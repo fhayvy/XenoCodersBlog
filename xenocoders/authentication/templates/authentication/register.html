@@ -10,14 +10,15 @@
 </head>
 <body>
     <h1>Register Page</h1>
+    {% include '_partials/messages.html' %}
 
-    <form method="post" action="{% url 'register' %}">
+    <form method="post" action={% url 'register' %}>
         {% csrf_token %}
-        <input type="text" name="username" id="" placeholder="Username">
-        <input type="email" name="email" id="" placeholder="email">
-        <input type="password" name="password" id="" placeholder="password">
-        <input type="password" name="password2" id="" placeholder="confirm-password">
-        <input type="submit" value="Submit">
+        <input type="text" name="username" value="{{data.username}}" placeholder="Username"/>
+        <input type="email" name="email" value="{{data.email}}" placeholder="email"/>
+        <input type="password" name="password" placeholder="password"/>
+        <input type="password" name="password2" placeholder="confirm password"/>
+        <input type="submit" value="Submit"/>
     </form>
     <span href="">Have an account? <a href="{% url 'login' %}">Login</a></span>
 </body>
