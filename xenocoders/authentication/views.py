@@ -4,13 +4,29 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from validate_email import validate_email
 from .models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
+from helpers.decorators import auth_user_should_not_access
+
 # Create your views here.
 
+# Home View
 def home(request):
     return render(request, 'authentication/index.html')
 
+
+# Log In View
+def logout_user(request):
+
+    logout(request)
+    messages.success(request, 'Successfully Logged Out')
+
+    return redirect(reverse('login'))
+
+
+# Log Out View
+@auth_user_should_not_access
 def login_user(request):
     if request.method == "POST":
         context={'has_error': False, 'data':request.POST}
@@ -24,12 +40,15 @@ def login_user(request):
             return render(request, 'authentication/login.html', context)
         
         login(request, user)
-        messages.success(request, f'Welcome {{user.username}}')
+        messages.success(request, f'Welcome {user.username}')
 
         return redirect(reverse('home'))
 
     return render(request, 'authentication/login.html')
 
+
+# Register View
+@auth_user_should_not_access
 def register(request):
     if request.method == "POST":
         context={'has_error': False, 'data':request.POST}
@@ -59,7 +78,7 @@ def register(request):
             context['has_error'] = True
         
         if User.objects.filter(email=email).exists():
-            messages.error(request, 'There already an account associated with this email.')
+            messages.error(request, 'There is already an account associated with this email.')
             context['has_error'] = True
         
         if context['has_error']:
