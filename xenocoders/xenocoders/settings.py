@@ -115,14 +115,15 @@ USE_I18N = True
 
 USE_TZ = True
 
-# EMAIL CONFIG
 
-EMAIL_FROM_USER = ''
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
-EMAIL_USE_TLS = True
-EMAIL_PORT = 587
+# EMAIL CONFIG
+EMAIL_FROM_USER = 'hi@imrvon.com'
+EMAIL_HOST = 'box5818.bluehost.com'
+EMAIL_HOST_USER = 'hi@imrvon.com'
+EMAIL_HOST_PASSWORD = 'Nn@md1von123'
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = False
+EMAIL_PORT = 26
 
 
 # Static files (CSS, JavaScript, Images)

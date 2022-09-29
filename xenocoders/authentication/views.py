@@ -1,12 +1,10 @@
-from audioop import reverse
-from multiprocessing import context
+from decimal import Context
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from validate_email import validate_email
 from .models import User
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
-from django.contrib.auth.decorators import login_required
 from helpers.decorators import auth_user_should_not_access
 from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
@@ -15,90 +13,40 @@ from django.utils.encoding import force_bytes, force_str, DjangoUnicodeDecodeErr
 from .utils import generate_token
 from django.core.mail import EmailMessage
 from django.conf import settings
-
-
+import threading
 
 
 # Create your views here.
+
+class EmailThread(threading.Thread):
+
+    def __init__(self, email):
+        self.email = email
+        threading.Thread.__init__(self)
+    
+    def run(self):
+        self.email.send()
+
 
 # Send Activation Mail
 def send_activation_mail(user, request):
     current_site = get_current_site(request)
     email_subject = 'Activate your Xenocoders Account'
-    email_body = render_to_string('authentication/activate.html',{
+    email_body = render_to_string('authentication/activate.html', {
         'user':user,
         'domain': current_site,
         'uid':urlsafe_base64_encode(force_bytes(user.pk)),
-        'token': generate_token.make_token(user)
+        'token': generate_token.make_token(user),
+        'protocol': 'https' if request.is_secure() else 'http'
     })
 
-    email = EmailMessage(subject=email_subject,
+    email=EmailMessage(subject=email_subject,
     body=email_body,
-    from_email = settings.EMAIL_FROM_USER,
-    to = [user.email]
+    from_email=settings.EMAIL_FROM_USER,
+    to=[user.email]
     )
 
-    email.send()
-
-
-# Activate Mail View
-def activate_user(request, uidb64, token):
-
-    try:
-        uid=force_str(urlsafe_base64_decode(uidb64))
-        user = User.objects.get(pk=uid)
-    
-    except Exception as e:
-        user = None
-    
-    if user and generate_token.check_token(user, token):
-        user.is_email_verified = True
-        user.save()
-        
-        messages.success(request, 'Email Verified and Account Successfully Activated')
-        return redirect(reverse('login'))
-
-    return render(request, 'authentication/activation-failed.html', {'user':user})
-
-
-# Home View
-def home(request):
-    return render(request, 'authentication/index.html')
-
-
-# Log In View
-def logout_user(request):
-
-    logout(request)
-    messages.success(request, 'Successfully Logged Out')
-
-    return redirect(reverse('login'))
-
-
-# Log Out View
-@auth_user_should_not_access
-def login_user(request):
-    if request.method == "POST":
-        context={'has_error': False, 'data':request.POST}
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-
-        user = authenticate(request, username=username,password=password)
-
-        if not user.is_email_verified:
-            messages.error(request, 'Email is not verified. Please check your mail inbox.')
-            return render(request, 'authentication/login.html', context)
-
-        if not user:
-            messages.error(request, 'invalid credentials')
-            return render(request, 'authentication/login.html', context)
-        
-        login(request, user)
-        messages.success(request, f'Welcome {user.username}')
-
-        return redirect(reverse('home'))
-
-    return render(request, 'authentication/login.html')
+    EmailThread(email).start()
 
 
 # Register View
@@ -142,14 +90,74 @@ def register(request):
         user.set_password(password)
         user.save()
 
-        send_activation_mail(user, request)
+        if not context['has_error']:
 
-        messages.success(request, 'Account created. You can now Log In')
+            send_activation_mail(user, request)
 
-        return redirect('login')
+            messages.success(request, f'Dear {user.username}, please visit your mail {user.email} inbox and click on received activation link to confirm and complete registration. Note: Check your spam folder.')
+
+            return redirect('login')
 
     return render(request, 'authentication/register.html')
 
+
+# Log In View
+@auth_user_should_not_access
+def login_user(request):
+    if request.method == "POST":
+        context={'has_error': False, 'data':request.POST}
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(request, username=username,password=password)
+
+        if user and not user.is_email_verified:
+            messages.error(request, 'Email is not verified. Please check your mail inbox.')
+            return render(request, 'authentication/login.html', context)
+
+        if not user:
+            messages.error(request, 'invalid credentials, try again')
+            return render(request, 'authentication/login.html', context)
+        
+        login(request, user)
+        messages.success(request, f'Welcome {user.username}')
+
+        return redirect(reverse('home'))
+
+    return render(request, 'authentication/login.html')
+
+
+# Log Out View
+def logout_user(request):
+
+    logout(request)
+    messages.success(request, 'Successfully Logged Out')
+
+    return redirect(reverse('login'))
+
+
+# Activate User View
+def activate_user(request, uidb64, token):
+
+    try:
+        uid=force_str(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+    
+    except Exception as e:
+        user = None
+    
+    if user and generate_token.check_token(user, token):
+        user.is_email_verified = True
+        user.save()
+        
+        messages.success(request, 'Email Verified and Account Successfully Activated. You Can Now Log In')
+        return redirect(reverse('login'))
+
+    return render(request, 'authentication/activation-failed.html', {'user':user})
+
+# Home View
+def home(request):
+    return render(request, 'authentication/index.html')
 
 
 
