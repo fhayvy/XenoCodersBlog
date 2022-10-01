@@ -4,6 +4,7 @@ from django.contrib import messages
 from validate_email import validate_email
 from .models import User
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from django.urls import reverse
 from helpers.decorators import auth_user_should_not_access
 from django.contrib.sites.shortcuts import get_current_site
@@ -13,6 +14,7 @@ from django.utils.encoding import force_bytes, force_str, DjangoUnicodeDecodeErr
 from .utils import generate_token
 from django.core.mail import EmailMessage
 from django.conf import settings
+from django.views import View
 import threading
 
 
@@ -161,3 +163,58 @@ def home(request):
 
 
 
+class RequestPasswordResetEmail(View):
+    def get(self, request):
+        return render(request, 'authentication/reset-password.html')
+
+    def post(self, request):
+
+        email=request.POST['email']
+        context={
+            'data':request.POST
+        }
+
+        if not validate_email(email):
+            messages.error(request, 'Please supply a valid email')
+            return render(request, 'authentication/request-password.html', context)
+        
+        current_site = get_current_site(request)
+
+        user = User.objects.filter(email=email)
+
+        if user.exists():
+            email_subject = 'Password Reset of your Xenocoders Account'
+            
+            email_contents = {
+                'user':user[0],
+                'domain': current_site.domain,
+                'uid':urlsafe_base64_encode(force_bytes(user[0].pk)),
+                'token': PasswordResetTokenGenerator().make_token(user[0]),
+                'protocol': 'https' if request.is_secure() else 'http'
+            }
+
+            link = reverse('reset-user-password', kwargs={
+                'uidb64':email_contents['uid'], 'token':email_contents['token']})
+            
+            reset_url = 'http://'+current_site.domain+link
+
+            email=EmailMessage(
+                email_subject,
+                'Hi there, click the link below to reset your password. \n' + reset_url,
+                'noreply@xenocoders.com',
+                [email],
+            )
+
+            EmailThread(email).start()
+
+        messages.success(request, 'We have sent you an email to reset your password')
+
+        return render(request, 'authentication/reset-password.html')
+
+
+class CompletePasswordReset(View):
+    def get(self, request, uidb64, token):
+        return render(request, 'authentication/set-new-password.html') 
+
+    def post(self, request, uidb64, token):
+        return render(request, 'authentication/set-new-password.html')

@@ -17,8 +17,12 @@
         {% csrf_token %}
         <input type="text" name="username" required value="{{data.username}}" placeholder="Username"/>
         <input type="password" name="password" required placeholder="password"/>
-        <input type="submit" value="Submit"/>
+        <input type="submit" value="Log In"/>
+
+        <div class="reset-pw">
+            <span href="">Don't have an account? <a href="{% url 'register' %}">Sign Up</a> ·</span>
+            <span href="">Forgot Password? <a href="{% url 'request-password' %}">Reset</a></span>
+        </div>
     </form>
-    <span href="">Don't have an account? <a href="{% url 'register' %}">Sign Up</a></span>
 </body>
 </html>
