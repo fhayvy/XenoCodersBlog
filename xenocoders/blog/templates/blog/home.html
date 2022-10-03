@@ -1,0 +1,17 @@
+{% extends 'blog/navbar.html' %}
+{% block content %}
+<h1>All Blog Posts</h1>
+<hr>
+{% for post in all_posts_list %}
+    <h3><a href="{% url 'post' post.id %}">{{post.title}}</a></h3>
+    -<small>{{post.category}}</small>
+    {{post.text | safe |slice:":400"}}<br>
+    By {{post.author}}<br>
+    <small>{{post.created_on}}</small>
+    {% comment %} <a href="{% url 'update_post' post.id %}">Update</a>
+    <a href="{% url 'delete_post' post.id %}">Delete</a> {% endcomment %}
+{% endfor %}
+
+
+
+{% endblock %}
