@@ -18,5 +18,10 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('authentication.urls'))
+    path('', include('authentication.urls')),
+    path('tinymce/', include('tinymce.urls')),
+    path('blog/', include('blog.urls')),
 ]
+
+
+handler404 = 'xenocoders.views.custom_page_not_found_view'
