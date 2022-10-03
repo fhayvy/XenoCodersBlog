@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
     <link rel="stylesheet" href="{% static '/css/main.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <h1>Register Page</h1>
@@ -16,10 +17,12 @@
         {% csrf_token %}
         <input type="text" name="username" value="{{data.username}}" placeholder="Username"/>
         <input type="email" name="email" value="{{data.email}}" placeholder="email"/>
-        <input type="password" name="password" placeholder="password"/>
-        <input type="password" name="password2" placeholder="confirm password"/>
+        <div class="password"><input type="password" name="password" placeholder="password" id="user-pw"/> <span onclick="ToggleFunction()"><i class="fa-solid fa-eye-low-vision" id="hide"></i> <i class="fa-solid fa-eye" id="show"></i></span></div>
+        <div class="password"><input type="password" name="password2" placeholder="confirm password"/> <i class="fa-solid fa-eye-low-vision"></i></div>
         <input type="submit" value="Submit"/>
     </form>
     <span href="">Have an account? <a href="{% url 'login' %}">Login</a></span>
+
+    <script src="{% static 'js/register.js' %}"></script>
 </body>
 </html>

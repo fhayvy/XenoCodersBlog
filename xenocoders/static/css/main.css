@@ -28,3 +28,17 @@ body {
 .reset-pw {
     text-align: center;
 }
+
+.fa-solid {
+    cursor: pointer;
+    margin-left: -30px;
+}
+
+.password {
+    display: flex;
+    align-items: center;
+}
+
+#show {
+    display: none;
+}

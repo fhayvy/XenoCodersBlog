@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
     <link rel="stylesheet" href="{% static '/css/main.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <h1>Login page</h1>
@@ -16,7 +17,7 @@
     <form method="post" action={% url 'login' %}>
         {% csrf_token %}
         <input type="text" name="username" required value="{{data.username}}" placeholder="Username"/>
-        <input type="password" name="password" required placeholder="password"/>
+        <div class="password"><input type="password" name="password" required placeholder="password"/><i class="fa-solid fa-eye"></i></div>
         <input type="submit" value="Log In"/>
 
         <div class="reset-pw">
