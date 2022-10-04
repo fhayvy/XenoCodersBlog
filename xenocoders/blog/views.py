@@ -1,11 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
 from .models import Post, Category
 from django.urls import reverse_lazy
-from django.core.mail import send_mail
+from django.core.mail import send_mail, BadHeaderError
+from django.http import HttpResponse
 from django.conf import settings
 from .forms import Author
 from django.shortcuts import redirect
+from .forms import ContactForm
 
 
 # Create your views here.
@@ -63,29 +65,24 @@ def CategoryView(request, cates):
     return render(request, "blog/category.html", context)
 
 
-def contact_us(request):
-    
-    if request.method == "POST":
-        message_name = request.POST['full-name']
-        message_phone = request.POST['phone']
-        message_email = request.POST['email']
-        message = request.POST['message']
+def contact(request):
+	if request.method == 'POST':
+		form = ContactForm(request.POST)
+		if form.is_valid():
+			subject = "New Message" 
+			body = {
+			'first_name': form.cleaned_data['first_name'], 
+			'last_name': form.cleaned_data['last_name'], 
+			'email': form.cleaned_data['email_address'], 
+			'message':form.cleaned_data['message'], 
+			}
+			message = "\n".join(body.values())
 
-        context = {
-            "message_name": message_name,
-        }
-        # SEND AN EMAIL THROUGH DJANGO
-        send_mail(
-            message_name,#subject
-            message,#message
-            settings.EMAIL_HOST_USER,#email_from
-            [''],#recipient
-            fail_silently=False,
-        )
-        
-
-        
-        return render(request, 'blog/contact_us.html', context)
-        
-
-    return render(request, 'blog/contact_us.html')
+			try:
+				send_mail(subject, message, 'hi@imrvon.com', ['hi@imrvon.com']) 
+			except BadHeaderError:
+				return HttpResponse('Invalid header found.')
+			return redirect ("contact")
+      
+	form = ContactForm()
+	return render(request, "blog/contact_us.html", {'form':form})
