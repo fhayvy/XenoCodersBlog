@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.urls import path
 from . import views
-from .views import RequestPasswordResetEmail, CompletePasswordReset
+from .views import RequestPasswordResetEmail, CompletePasswordReset, ShowProfilePageView
 
 urlpatterns = [
     path('', views.home, name='home'),
@@ -25,4 +25,5 @@ urlpatterns = [
     path('activate_user/<uidb64>/<token>', views.activate_user, name='activate'),
     path('request-reset-link', RequestPasswordResetEmail.as_view(), name='request-password'),
     path('set-new-password/<uidb64>/<token>', CompletePasswordReset.as_view(), name='reset-user-password'),
+    path('<int:pk>/user', ShowProfilePageView.as_view(), name="user_profile"),
 ]
