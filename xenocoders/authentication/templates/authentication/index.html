@@ -9,6 +9,9 @@
 <body>
     <h1>Home Page</h1>
     {% include '_partials/messages.html' %}
+
+    {% comment %} <a href="{% url 'user_profile' current_user.id %}">Your Profile</a> {% endcomment %}
+
     <form method='post' action={% url 'logout_user' %}>
         {% csrf_token %}
         <input type="submit" value="Sign Out">

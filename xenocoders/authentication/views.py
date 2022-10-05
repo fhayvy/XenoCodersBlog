@@ -1,5 +1,5 @@
 from decimal import Context
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib import messages
 from validate_email import validate_email
 from .models import User
@@ -16,6 +16,9 @@ from django.core.mail import EmailMessage
 from django.conf import settings
 from django.views import View
 import threading
+from django.views.generic import DetailView
+
+
 
 
 # Create your views here.
@@ -124,7 +127,11 @@ def login_user(request):
         login(request, user)
         messages.success(request, f'Welcome {user.username}')
 
-        return redirect(reverse('home'))
+        
+
+
+        return redirect(reverse('user_profile', args=[user.pk]))
+        
 
     return render(request, 'authentication/login.html')
 
@@ -270,3 +277,18 @@ class CompletePasswordReset(View):
         
 
         # return render(request, 'authentication/set-new-password.html', context)
+
+
+
+class ShowProfilePageView(DetailView):
+    model = User
+    template_name = "authentication/profile.html"
+
+    def get_context_data(self, *args, **kwargs):
+        users = User.objects.all()
+        context = super(ShowProfilePageView, self).get_context_data( *args, **kwargs)
+
+        current_page_user = get_object_or_404(User, id=self.kwargs['pk'])
+
+        context["current_page_user"] = current_page_user
+        return context
