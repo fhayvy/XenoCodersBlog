@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1']
 
@@ -125,9 +125,8 @@ EMAIL_FROM_USER = 'hi@imrvon.com'
 EMAIL_HOST = 'box5818.bluehost.com'
 EMAIL_HOST_USER = 'hi@imrvon.com'
 EMAIL_HOST_PASSWORD = 'Nn@md1von123'
-EMAIL_USE_TLS = False
-EMAIL_USE_SSL = False
-EMAIL_PORT = 26
+EMAIL_USE_TLS = True
+EMAIL_PORT = 465
 
 
 # Static files (CSS, JavaScript, Images)
