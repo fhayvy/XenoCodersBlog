@@ -125,8 +125,8 @@ EMAIL_FROM_USER = 'hi@imrvon.com'
 EMAIL_HOST = 'box5818.bluehost.com'
 EMAIL_HOST_USER = 'hi@imrvon.com'
 EMAIL_HOST_PASSWORD = 'Nn@md1von123'
-EMAIL_USE_TLS = True
-EMAIL_PORT = 465
+EMAIL_USE_TLS = False
+EMAIL_PORT = 26
 
 
 # Static files (CSS, JavaScript, Images)
