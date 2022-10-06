@@ -289,6 +289,12 @@ class ShowProfilePageView(DetailView):
         context = super(ShowProfilePageView, self).get_context_data( *args, **kwargs)
 
         current_page_user = get_object_or_404(User, id=self.kwargs['pk'])
+        posts = current_page_user.blog_posts.all()
 
-        context["current_page_user"] = current_page_user
+        context = {
+            "current_page_user": current_page_user,
+            "posts": posts,
+        }
+        # context["current_page_user"] = current_page_user
+        # context["posts"] = posts
         return context
