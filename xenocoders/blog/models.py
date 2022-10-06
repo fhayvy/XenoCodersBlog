@@ -3,6 +3,8 @@ from django.urls import reverse
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.conf import settings
+from ckeditor_uploader.fields import RichTextUploadingField
+
 
 
 
@@ -26,7 +28,7 @@ class Post(models.Model):
     title = models.CharField(max_length=250)
     created_on = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='blog_posts')
-    text = models.TextField(blank=True, null=True)
+    text = RichTextUploadingField(blank=True, null=True)
     status = models.CharField(max_length=10, choices=options, default='draft')
     category = models.ForeignKey(Category, on_delete=models.CASCADE,related_name="blog_category")
     likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="blog_likes")
