@@ -1,3 +1,21 @@
 <h1>MY PROFILE PAGE</h1>
 
-{{current_page_user}}
+Hi {{current_page_user}}, do you want to add a new post?<br>
+<button type="submit" onclick="location.href='{% url 'add_post' %}'">Add New Post</button>
+
+
+{% for post in posts %}
+    <h3><a href="{% url 'post' post.id %}">{{post.title}}</a></h3>
+    -<small>{{post.category}}</small>
+    {{post.text | safe |slice:":400"}}<br>
+    By {{post.author}}<br>
+    <small>{{post.created_on}}</small>
+
+{% endfor %}
+
+<hr>
+ Do you want to log out?
+<form method='post' action={% url 'logout_user' %}>
+    {% csrf_token %}
+    <input type="submit" value="Sign Out">
+</form>
