@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <header class="main-header">
+            <div class="brand"><img src="{% static 'media/logo.png' %}" alt="logo"></div>
+        
+            <nav class="navbar">
+                <a href="">HTML</a>
+                <a href="">CSS</a>
+                <a href="">JavaScript</a>
+                <a href="">About Us</a>
+            </nav>
+        
+            <div class="login-logout">
+                <div class="login">
+                    <div class="avi"><img src="{% static 'media/user-img.png' %}" alt=""></div>
+                </div>
+                <div class="logout">
+                    <a href="">Write For Us</a>
+                </div>
+            </div>
+        </header>
+            
+            {% block content %}
+
+
+            {% endblock content %}
+        
+        <footer>
+            <div class="footer-1">
+                <div class="footer-top">
+                    <div class="foot-top-left-text">
+                        <p>Subscribe For New Contents</p>
+                        <p>By becoming a member of our blog, you have access to unlimited articles and contents</p>
+                    </div>
+                    <div class="foot-top-right">
+                        <div class="mail-section">
+                            <div class="mail-icon">
+                                <img src="{% static 'media/mail.png' %}" alt="mail">
+                            </div>
+                            <form action="" method="post">
+                                <input type="email" name="mail" id="mail" required placeholder="example@gmail.com">
+                            </div>
+                            <div class="subscribe-btn">
+                                <button>Subscribe</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <div class="foot-btm-left">
+                        <a href="">Write for Us</a>
+                        <a href="">About</a>
+                        <a href="">Blog</a>
+                        <a href="">Categories</a>
+                        <a href="">Bookmarks</a>
+                    </div>
+                    <div class="foot-btm-middle">
+                        <img src="{% static 'media/logo-full.png' %}" alt="icon">
+                    </div>
+                    <div class="foot-btm-right">
+                        <p>2022. All rights reserved</p>
+                    </div>
+                </div>
+            </div>
+            <!-- GET WHEN SCREEN SIZE IS AT 768PX -->
+            <div class="footer-2">
+                <img src="images/Vector (8).png" alt="nav-icons" title="Search">
+                <img src="images/Vector (9).png" alt="nav-icons" title="Home">
+                <img src="images/Vector (10).png" alt="nav-icons" title="Apps">
+                <img src="images/Vector (11).png" alt="nav-icons" title="Profile">
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

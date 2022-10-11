@@ -1,3 +1,4 @@
+{% extends '_partials/base.html' %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +8,9 @@
     <title>Home</title>
 </head>
 <body>
+
     <h1>Home Page</h1>
+
     {% include '_partials/messages.html' %}
 
     {% comment %} <a href="{% url 'user_profile' current_user.id %}">Your Profile</a> {% endcomment %}
