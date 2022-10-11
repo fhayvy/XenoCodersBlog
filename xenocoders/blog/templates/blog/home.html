@@ -5,14 +5,16 @@
 <h1>All Blog Posts</h1>
 <hr>
 
-{% for post in all_posts_list %}
-    <h3><a href="{% url 'post' post.id %}">{{post.title}}</a></h3>
+{% comment %} {% for post in all_posts_list %} {% endcomment %}
+    {% comment %} <h3><a href="{% url 'post' post.id %}">{{post.title}}</a></h3>
     -<small>{{post.category}}</small>
     {{post.text | safe |slice:":400"}}<br>
     By {{post.author}}<br>
-    <small>{{post.created_on}}</small>
+    <small>{{post.created_on}}</small> {% endcomment %}
 
-    {% endfor %}
+{% comment %} {% endfor %}  {% endcomment %}
+
+
 
 <section>
     <div class="landing-container">
@@ -31,59 +33,64 @@
     <hr class="landing-line-divider">
 </div>
 
+
 <section class="landing-section-container landing-layout-one">
-    <div class="landing-container">
-        <div class="landing-section-content">
-            <div class="landing-left_column landing-each_column hero-col">
-                <div>
-                    <h2 class="landing-column-title">Why Adobe is buying figma for $20B:Investors are angry</h2>
-                </div>
-                <div class="landing-profile-flex">
-                    <div class="landing-profile-pic">
-                        <img src="{% static 'media/profile_head.png' %}" alt="first profile head of the page" />
-                    </div>
+{% for post in all_posts_list %}
+{% if forloop.counter == 1 %}
+        <div class="landing-container">
+            <div class="landing-section-content">
+                <div class="landing-left_column landing-each_column hero-col">
                     <div>
-                        <p class="landing-profile-text">Emmanuel Chike</p>
+                        <h2 class="landing-column-title">{{post.title}}</h2>
                     </div>
-                </div>
-                <div class="landing-hero-content">
-                    <p class="landing-hero-text">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. At in sit
-                        aliquam commodo scelerisque mauris nec, amet quam. Ultrices netus
-                        ac, varius scelerisque amet ac sed lacus. Tristique quis.
-                    </p>
-                </div>
-                <div class="landing-timeline-content">
-                    <div class="landing-timeline-flex">
-                        <div class="landing-each_timeline">
-                            <img src="{% static 'media/time_icon.png' %}" alt="time icon" />
-                            <span class="landing-each_time">4 min</span>
+                    <div class="landing-profile-flex">
+                        <div class="landing-profile-pic">
+                            <img src="{% static 'media/profile_head.png' %}" alt="first profile head of the page" />
                         </div>
-                        <div class="landing-each_timeline">
-                            <img src="{% static 'media/calendar_icon.png' %}" alt="calendar icon" />
-                            <span class="landing-each_time">Sep 20, 2022</span>
-                        </div>
-                        <div class="landing-each_timeline">
-                            <img src="{% static 'media/eye_icon.png' %}" alt="eye icon" />
-                            <span class="landing-each_time">2983</span>
+                        <div>
+                            <p class="landing-profile-text">{{post.author}}</p>
                         </div>
                     </div>
-                    <div>
-                        <button class="landing-readmore-btn">Read more</button>
-                        <span><img src="{% static 'media/readmore_arrow.png' %}" alt="arrow down"/></span>
+                    <div class="landing-hero-content">
+                        <p class="landing-hero-text">
+                            {{post.text | safe |slice:":100"}}
+                        </p>
+                    </div>
+                    <div class="landing-timeline-content">
+                        <div class="landing-timeline-flex">
+                            <div class="landing-each_timeline">
+                                <img src="{% static 'media/time_icon.png' %}" alt="time icon" />
+                                <span class="landing-each_time">4 min</span>
+                            </div>
+                            <div class="landing-each_timeline">
+                                <img src="{% static 'media/calendar_icon.png' %}" alt="calendar icon" />
+                                <span class="landing-each_time">{{post.created_on}}</span>
+                            </div>
+                            <div class="landing-each_timeline">
+                                <img src="{% static 'media/eye_icon.png' %}" alt="eye icon" />
+                                <span class="landing-each_time">2983</span>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="landing-readmore-btn" onclick="location.href = '{% url 'post' post.id %}'">Read more</button>
+                            <span><img src="{% static 'media/readmore_arrow.png' %}" alt="arrow down"/></span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="landing-right_column landing-each_column">
-                <div class="landing-page-img">
-                    <img src="{% static 'media/hero_img.png' %}" alt="This is the hero image" class="landing-page-image" />
+{% endif %}
+{% endfor %}
+                <div class="landing-right_column landing-each_column">
+                    <div class="landing-page-img">
+                        <img src="{% static 'media/hero_img.png' %}" alt="This is the hero image" class="landing-page-image" />
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 </section>
 
-<section class="landing-section-container landing-layout-two">
+
+
+<section class="landing-section-container landing-layout-two">    
     <div class="landing-container">
         <div class="landing-top_row heading-flex">
             <div class="landing-flex-head">
@@ -100,6 +107,8 @@
                 </div>
             </div>
         </div>
+{% for post in all_posts_list %}
+{% if forloop.counter == 2 %}
 
         <div class="landing-bottom_row">
             <div class="landing-section-content">
@@ -108,14 +117,14 @@
                         <img src="{% static 'media/fintech_image.png' %}" alt="An image in section two of the page" class="landing-page-image"/>
                     </div>
                     <div>
-                        <h2 class="landing-column-title">Nigerians react to 6Billion loss incurred by Kuda</h2>
+                        <h2 class="landing-column-title">{{post.title}}</h2>
                     </div>
                     <div class="landing-profile-flex">
                         <div class="landing-profile-pic">
                             <img src="{% static 'media/fintech_profile.png' %}" alt="A profile image of the Fintech section" />
                         </div>
                         <div>
-                            <p>Oloje Oluwatosin</p>
+                            <p>{{post.author}}</p>
                         </div>
                     </div>
                     <div class="landing-timeline-content">
@@ -126,7 +135,7 @@
                             </div>
                             <div class="landing-each_timeline">
                                 <img src="{% static 'media/calendar_icon.png' %}" alt="calendar icon" />
-                                <span class="landing-each_time">Sep 20, 2022</span>
+                                <span class="landing-each_time">{{post.created_on}}</span>
                             </div>
                             <div class="landing-each_timeline">
                                 <img src="{% static 'media/eye_icon.png' %}" alt="eye icon" />
@@ -134,54 +143,69 @@
                             </div>
                         </div>
                         <div>
-                            <button class="landing-readmore-btn">Read more</button>
+                            <button class="landing-readmore-btn" onclick="location.href = '{% url 'post' post.id %}'">Read more</button>
                             <span><img src="{% static 'media/readmore_arrow.png' %}" alt="arrow down"/></span>
                         </div>
                     </div>
                 </div>
+{% endif %}
+{% endfor %}
+
+{% for post in all_posts_list %}
+{% if forloop.counter == 3 %}
+    
                 <div class="landing-right_column landing-each_column">
+    
                     <div class="landing-article-layout">
                         <div class="landing-hero-img">
                             <img src="{% static 'media/JP_logo.png' %}" alt="Just project" class="landing-just-image" />
                         </div>
                         <div class="landing-article-content">
-                            <h3 class="landing-article-head">Just Project Launches</h3>
+                            <h3 class="landing-article-head">{{post.title}}</h3>
                             <p class="landing-article-text">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                Laoreet massa amet malesuada montes,
+                                {{post.text | safe |slice:":100"}}
                             </p>
                             <div class="landing-article-action">
-                                <button class="landing-readmore-btn">Read more</button>
+                                <button class="landing-readmore-btn" onclick="location.href = '{% url 'post' post.id %}'">Read more</button>
                             </div>
                         </div>
                     </div>
+{% endif %}
+{% endfor %}
+
+{% for post in all_posts_list %}
+{% if forloop.counter == 4 %}
+
                     <div class="landing-article-layout">
                         <div class="landing-hero-img">
                             <img src="{% static 'media/JP_logo.png' %}" alt="Just project" class="landing-just-image"/>
                         </div>
                         <div class="landing-article-content">
-                            <h3 class="landing-article-head">Just Project Launches</h3>
+                            <h3 class="landing-article-head">{{post.title}}</h3>
                             <p class="landing-article-text">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                Laoreet massa amet malesuada montes,
+                                {{post.text | safe |slice:":100"}}
                             </p>
                             <div class="landing-article-action">
-                                <button class="landing-readmore-btn">Read more</button>
+                                <button class="landing-readmore-btn" onclick="location.href = '{% url 'post' post.id %}'">Read more</button>
                             </div>
                         </div>
                     </div>
+{% endif %}
+{% endfor %}
+
+{% for post in all_posts_list %}
+{% if forloop.counter == 5 %}
                     <div class="landing-article-layout">
                         <div class="landing-hero-img">
                             <img src="{% static 'media/JP_logo.png' %}" alt="Just project" class="landing-just-image"/>
                         </div>
                         <div class="landing-article-content">
-                            <h3 class="landing-article-head">Just Project Launches</h3>
+                            <h3 class="landing-article-head">{{post.title}}</h3>
                             <p class="landing-article-text">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                Laoreet massa amet malesuada montes,
+                                {{post.text | safe |slice:":100"}}
                             </p>
                             <div class="landing-article-action">
-                                <button class="landing-readmore-btn">Read more</button>
+                                <button class="landing-readmore-btn" onclick="location.href = '{% url 'post' post.id %}'">Read more</button>
                             </div>
                         </div>
                     </div>
@@ -189,6 +213,8 @@
             </div>
         </div>
     </div>
+{% endif %}
+{% endfor %}
 </section>
 
 <section class="landing-section-container landing-layout-three">

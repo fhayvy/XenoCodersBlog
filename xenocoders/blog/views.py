@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
 from .models import Post, Category
 from django.urls import reverse_lazy
@@ -16,6 +16,18 @@ class AllPostsView(ListView):
     model = Post
     template_name = "blog/home.html"
     context_object_name = "all_posts_list"
+
+#     def get_context_data(self, *args, **kwargs):
+#         # post_title = Post.objects.filter(title)
+#         stuff = get_object_or_404(Post, id=self.kwargs[self.title])
+
+#         context = super(AllPostsView, self).get_context_data(*args, **kwargs)
+
+#         context["post_title"] = stuff
+#         return context
+
+# def AllPostsView(request):
+#     return render(request, "blog/home.html")
 
 
 class CreatePostView(CreateView):
