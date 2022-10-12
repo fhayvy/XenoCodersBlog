@@ -1,10 +1,329 @@
-{% extends 'blog/navbar.html' %}
+{% extends '_partials/base.html' %}
+{% load static %}
+
 {% block content %}
 
-<h1>{{post.title}}</h1>
 
-{{post.text|safe}}<br>
-{% comment %} <a href="{% url 'update_post' post.id %}">Update</a>
-<a href="{% url 'delete_post' post.id %}">Delete</a> {% endcomment %}
+
+
+<main>
+    <!--  FIRST SECTION STARTS -->
+    <section class="blog-post-heading_section">
+        
+            <div class="blog-post-article-category">
+                {% for category in post.category.all %}
+                <h3>{{category}}</h3>
+                {% endfor %}
+            </div>
+
+            <div>
+                <h2><b>{{post.title}}</b></h2>
+            </div>
+            <div class="blog-post-personal_profile">
+                <div>
+                    <img src="{% static 'media/article-header-img.jpg' %}" alt="A profile image of the Fintech section" />
+                </div>
+                <div>
+                    <p><strong>{{post.author}}</strong></p>
+                </div>
+            </div>
+            
+            <div class="blog-post-article-icon">
+                <div class="blog-post-span_image">
+                    <img src="{% static 'media/calendar_icon.png' %}" alt="calendar icon" />
+                    <span><strong>{{post.created_on}}</strong></span>
+                </div>
+            </div>
+            
+            <div class="blog-post-article-hero-image">
+                <img src="{% static 'media/fintech_img.png' %}" alt="An image kuda man"/> 
+            </div>
+        </div>
+    </section>
+    <!--  FIRST SECTION ENDS -->
+
+
+    <!-- SECOND SECTION STARTS -->
+    <section class="blog-post-article-main-section">
+        <div class="blog-post-writeup">
+            {{post.text|safe}}
+        </div>
+
+        <div class="blog-post-article-sidebar">
+            <div class="blog-post-related_article">
+                <img src="{% static 'media/headline_bar.png' %}" alt="A bar before all the headings" />
+                <h3>Related Articles</h3>
+            </div>
+            
+            {% for post in all_posts_list %}
+            <div class="blog-post-read-more-article">
+                <div>
+                    <img src="{% static 'media/JP_Logo.png' %}" alt="Just project" />
+                </div>
+                <div>
+                    <h3>{{post.title}}</h3>
+                    <p class="read-more-description">
+                        {{post.text | safe |slice:":100"}}
+                    </p>
+                    <div>
+                        <button class="blog-post-article-btn" onclick="location.href='{% url 'post' post.id %}'">Read more</button>
+                    </div>
+                </div>
+            </div>  
+            {% endfor %}          
+        </div>
+    </section>
+    <!--  SECOND SECTION ENDS -->
+
+    <!-- COMMENT SECTION STARTS -->
+    <section class="blog-post-comment-extra">
+        <section class="blog-post-comment">
+            <div class="blog-post-comment-text">
+                <h4>Comment</h4><p><b>(12)</b></p>
+            </div>
+            <div class="blog-post-comment-area">
+                    <div class="blog-post-text-area">
+                        <form method="GET" action="">
+                            
+                            <textarea id="blog-post-textarea1" name="name" rows="6" cols="50" placeholder="Write comment here " style="width: 100%; height: 175px;"> 
+                            </textarea>
+                            <div class="blog-post-publish">
+                                <div class="blog-post-add-btns">
+                                    <button class="blog-post-btn2">
+                                        <i class="fa fa-bold" aria-hidden="true"></i>
+                                    </button>
+                                    <button class="blog-post-btn2">
+                                        <i class="fa fa-italic" aria-hidden="true"></i>
+                                    </button>
+                                    <button class="blog-post-btn2">
+                                        <i class="fa fa-link" aria-hidden="true"></i>
+                                    </button>
+                                    <button class="blog-post-btn2">
+                                        <i class="fas fa-list" aria-hidden="true"></i>
+                                    </button>
+                                    <button class="blog-post-btn2">
+                                        <i class="fas fa-list-ol"></i>
+                                    </button>
+                                </div>
+                                <button class="blog-post-add-blog-btn"><a href="">Comment</a></button>
+                            </div>
+                          </form>
+                    </div>
+                    <div class="blog-post-comment-users">
+                        <div class="blog-post-comment-feed">
+                            <div class="blog-post-comment-img">
+                                <img src="{% static 'media/fintech_profile.png' %}" alt="">
+                            </div>
+                            <div class="blog-post-comment-users-text">
+                                <p class="blog-post-comment-user-name">
+                                    <b>Eze Goodluk</b>
+                                </p>
+                                <p class="blog-post-comment-time">
+                                    16 hours ago
+                                </p>
+                            </div>
+                        </div>
+                        <div class="blog-post-comment-feed-text">
+                            <p>
+                                This article was informative
+                            </p>
+                        </div>
+                    </div>
+                    <div class="blog-post-comment-users">
+                        <div class="blog-post-comment-feed">
+                            <div class="blog-post-comment-img">
+                                <img src="{% static 'media/fintech_profile.png' %}" alt="">
+                            </div>
+                            <div class="blog-post-comment-users-text">
+                                <p class="blog-post-comment-user-name">
+                                    <b>Eze Goodluk</b>
+                                </p>
+                                <p class="blog-post-comment-time">
+                                    16 hours ago
+                                </p>
+                            </div>
+                        </div>
+                        <div>
+                            <p>
+                                This article was informative
+                            </p>
+                        </div>
+                    </div>
+                    <div class="blog-post-load-more">
+                        <a href="" class="blog-post-load-more-btn">Load More <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                    </div>
+            </div>
+        </section>
+    </section>
+    <!-- COMMENT SECTION ENDS -->
+
+    <!--  FOURTH SECTION STARTS -->
+    <section class="blog-post-articles-palette">
+        <!-- column1 -->
+        <div class="blog-post-articles-palette-contaier">
+            <div class="blog-post-palette-header">
+                <h3>Read More</h3>
+            </div>
+
+            <div class="blog-post-other-articles">
+                <div class="blog-post-bottom-read-more-article">
+                    <div>
+                        <img src="{% static 'media/JP_Logo.png' %}" alt="Just project" />
+                    </div>
+                    <div>
+                        <h3>Just Project Launches</h3>
+                        <p class="blog-post-read-more-description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Laoreet massa amet malesuada montes,
+                        </p>
+                        <div>
+                            <button class="blog-post-article-btn">Read more</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="blog-post-bottom-read-more-article">
+                        <div>
+                            <img src="{% static 'media/JP_Logo.png' %}" alt="Just project" />
+                        </div>
+                        <div>
+                            <h3>Just Project Launches</h3>
+                            <p class="blog-post-read-more-description">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                Laoreet massa amet malesuada montes,
+                            </p>
+                            <div>
+                                <button class="blog-post-article-btn">Read more</button>
+                            </div>
+                        </div>
+                </div>
+                
+                <div class="blog-post-bottom-read-more-article">
+                        <div>
+                            <img src="{% static 'media/JP_Logo.png' %}" alt="Just project" />
+                        </div>
+                        <div>
+                            <h3>Just Project Launches</h3>
+                            <p class="blog-post-read-more-description">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                Laoreet massa amet malesuada montes,
+                            </p>
+                            <div>
+                                <button class="blog-post-article-btn">Read more</button>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- column2 -->
+        <div class="blog-post-articles-palette-contaier">
+            <div class="blog-post-other-articles">
+                <div class="blog-post-bottom-read-more-article">
+                    <div>
+                        <img src="{% static 'media/JP_Logo.png' %}" alt="Just project" />
+                    </div>
+                    <div>
+                        <h3>Just Project Launches</h3>
+                        <p class="blog-post-read-more-description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Laoreet massa amet malesuada montes,
+                        </p>
+                        <div>
+                            <button class="blog-post-article-btn">Read more</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="blog-post-bottom-read-more-article">
+                        <div>
+                            <img src="{% static 'media/JP_Logo.png' %}" alt="Just project" />
+                        </div>
+                        <div>
+                            <h3>Just Project Launches</h3>
+                            <p class="blog-post-read-more-description">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                Laoreet massa amet malesuada montes,
+                            </p>
+                            <div>
+                                <button class="blog-post-article-btn">Read more</button>
+                            </div>
+                        </div>
+                </div>
+                
+                <div class="blog-post-bottom-read-more-article">
+                        <div>
+                            <img src="{% static 'media/JP_Logo.png' %}" alt="Just project" />
+                        </div>
+                        <div>
+                            <h3>Just Project Launches</h3>
+                            <p class="blog-post-read-more-description">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                Laoreet massa amet malesuada montes,
+                            </p>
+                            <div>
+                                <button class="blog-post-article-btn">Read more</button>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- column3 -->
+        <div class="blog-post-articles-palette-contaier">
+            <div class="blog-post-other-articles">
+                <div class="blog-post-bottom-read-more-article">
+                    <div>
+                        <img src="{% static 'media/JP_Logo.png' %}" alt="Just project" />
+                    </div>
+                    <div>
+                        <h3>Just Project Launches</h3>
+                        <p class="blog-post-read-more-description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Laoreet massa amet malesuada montes,
+                        </p>
+                        <div>
+                            <button class="blog-post-article-btn">Read more</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="blog-post-bottom-read-more-article">
+                        <div>
+                            <img src="{% static 'media/JP_Logo.png' %}" alt="Just project" />
+                        </div>
+                        <div>
+                            <h3>Just Project Launches</h3>
+                            <p class="blog-post-read-more-description">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                Laoreet massa amet malesuada montes,
+                            </p>
+                            <div>
+                                <button class="blog-post-article-btn">Read more</button>
+                            </div>
+                        </div>
+                </div>
+                
+                <div class="blog-post-bottom-read-more-article">
+                        <div>
+                            <img src="{% static 'media/JP_Logo.png' %}" alt="Just project" />
+                        </div>
+                        <div>
+                            <h3>Just Project Launches</h3>
+                            <p class="blog-post-read-more-description">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                Laoreet massa amet malesuada montes,
+                            </p>
+                            <div>
+                                <button class="blog-post-article-btn">Read more</button>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- FOURTH SECTION ENDS -->
+</main>
+
 
 {% endblock %}

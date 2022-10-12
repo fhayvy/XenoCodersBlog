@@ -11,7 +11,9 @@
 <body>
     <div>
         <header class="main-header">
-            <div class="brand"><img src="{% static 'media/logo.png' %}" alt="logo"></div>
+            <div class="brand">
+                <a href="{% url 'home' %}"><img src="{% static 'media/logo.png' %}" alt="logo"></a>
+            </div>
         
             <nav class="navbar">
                 <a href="">HTML</a>
@@ -59,7 +61,7 @@
                 </div>
 
                 <div><img src="{% static 'media/logo-full.png' %}" alt=""></div>
-                <div><p>Copyright © 2022 XENOCODERS  -  All rights reserved </p></div>
+                <div><p>Copyright © 2022 Xenocoders - All rights reserved </p></div>
             </section>
         </footer>
     </div>
