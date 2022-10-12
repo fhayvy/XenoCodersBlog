@@ -8,6 +8,7 @@ from django.conf import settings
 from .forms import Author
 from django.shortcuts import redirect
 from .forms import ContactForm
+from django.contrib import messages
 
 
 # Create your views here.
@@ -77,26 +78,29 @@ def CategoryView(request, cates):
     return render(request, "blog/category.html", context)
 
 
-def contact(request):
-	if request.method == 'POST':
-		form = ContactForm(request.POST)
-		if form.is_valid():
-			subject = "New Message" 
-			body = {
-			'first_name': form.cleaned_data['first_name'], 
-			'email': form.cleaned_data['email_address'], 
-			'message':form.cleaned_data['message'], 
-			}
-			message = "\n".join(body.values())
 
-			try:
-				send_mail(subject, message, 'hi@imrvon.com', ['hi@imrvon.com']) 
-			except BadHeaderError:
-				return HttpResponse('Invalid header found.')
-			return redirect ("contact")
-      
-	form = ContactForm()
-	return render(request, "blog/contact_us.html", {'form':form})
+def contact(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            subject = "New Message on Xenocoders" 
+            body = {
+            'first_name': form.cleaned_data['first_name'], 
+            'email': form.cleaned_data['email_address'], 
+            'message':form.cleaned_data['message'], 
+            }
+            message = "\n".join(body.values())
+            
+            try:
+                send_mail(subject, message, 'hi@imrvon.com', ['hi@imrvon.com']) 
+            except BadHeaderError:
+                return HttpResponse('Invalid header found.')
+            messages.success(request, "Message sent." )
+            return redirect ("contact")
+        messages.error(request, "Error. Message not sent.")
+
+    form = ContactForm()
+    return render(request, "blog/contact_us.html", {'form':form})
 
 
 def about_us(request):
