@@ -273,12 +273,6 @@ class CompletePasswordReset(View):
             messages.info(request, 'Something went wrong. Try again.')
             return render(request, 'authentication/set-new-password.html', context)
 
-        
-        
-
-        # return render(request, 'authentication/set-new-password.html', context)
-
-
 
 class ShowProfilePageView(DetailView):
     model = User

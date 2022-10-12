@@ -538,7 +538,6 @@ font-family: 'Roboto', sans-serif;
 .footer-subscribe {
   background: linear-gradient(90deg, var(--color-primary-text), var(--color-secondary-text));
   padding: 4rem;
-  margin-top: 2rem;
 }
 .subscribe-project {
   display: flex;
@@ -997,4 +996,89 @@ color: #fff;
 }
 .blog-post-bottom-read-more-article img{
   width: 100%;
+}
+
+/* ...............................Contact Us Page ..................................... */
+
+.contact-us-container {
+  display: flex;
+  justify-content: center;
+  background-color: var(--color-primary-text);
+  padding: 4rem;
+}
+
+.contact-us-container > div {
+  flex-basis: 50%;
+}
+
+.contact-us-left h1 {
+  font-size: 96px;
+  font-weight: 600;
+  line-height: 142px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #FFFFFF;
+}
+
+.contact-us-left p {
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 38px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #f1f1f1;
+}
+
+.contact-us-container form {
+  background-color: #FFFFFF;
+  padding: 2rem;
+  border-radius: 10px;
+}
+
+.contact-us-container input, textarea {
+  display: inline-block;
+  margin: 1rem 0 !important;
+  padding: 1rem !important;
+  width: 100%;
+  border: thin solid #cccccc;
+  border-radius: 8px;
+}
+
+.contact-us-container textarea {
+  height: 200px;
+  resize: none;
+  background-color: #F2F2F2;
+}
+
+.contact-us-container input[type="submit"] {
+  width: fit-content;
+  cursor: pointer;
+  background-color: var(--color-primary-text);
+  color: #FFFFFF;
+  border: none;
+  outline: none;
+  user-select: none;
+  border-radius: 5px;
+  font-size: 18px;
+}
+
+.contact-us-container label {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 23px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.contact-us-container ::placeholder {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 32px;
+  letter-spacing: 0em;
+  color: #0000005d;
+}
+
+.contact-submit-btn {
+  display: flex;
+  justify-content: flex-end;
 }

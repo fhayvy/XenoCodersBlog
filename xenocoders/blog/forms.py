@@ -11,7 +11,6 @@ class Author(ModelForm):
 
 
 class ContactForm(forms.Form):
-	first_name = forms.CharField(max_length = 50)
-	last_name = forms.CharField(max_length = 50)
-	email_address = forms.EmailField(max_length = 150)
-	message = forms.CharField(widget = forms.Textarea, max_length = 2000)
+	first_name = forms.CharField(label="", max_length = 50, widget=forms.TextInput(attrs={'placeholder': 'Your Name'}))
+	email_address = forms.EmailField(label="", max_length = 150, widget=forms.TextInput(attrs={'placeholder': 'Your Email address'}))
+	message = forms.CharField(label="", widget = forms.Textarea(attrs={'placeholder': 'Your Message'}), max_length = 2000,)

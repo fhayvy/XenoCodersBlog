@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import contact, AllPostsView, CreatePostView, PostDetailView, PostUpdateView, PostDeleteView, AddCategoryView, CategoryView
+from .views import contact, about_us, AllPostsView, CreatePostView, PostDetailView, PostUpdateView, PostDeleteView, AddCategoryView, CategoryView
 from .forms import ContactForm
 from . import views
 
@@ -13,4 +13,5 @@ urlpatterns = [
     path('contact_us/', views.contact, name="contact"),
     path('add_category/', AddCategoryView.as_view(), name="add_category"),
     path('category/<str:cates>/', CategoryView, name="category"),
+    path('about_us/', about_us, name="about_us"),
 ]
