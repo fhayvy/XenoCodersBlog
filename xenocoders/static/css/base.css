@@ -26,7 +26,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 5rem;
+  padding: 1rem 4rem;
 }
 
 .main-header .navbar {
@@ -251,7 +251,7 @@ font-family: 'Roboto', sans-serif;
 
 .landing-container {
   max-width: 1200px;
-  width: 92%;
+  width: 90%;
   margin: 0 auto;
 }
 
@@ -537,7 +537,7 @@ font-family: 'Roboto', sans-serif;
 /* FIFTH SECTION */
 .footer-subscribe {
   background: linear-gradient(90deg, var(--color-primary-text), var(--color-secondary-text));
-  padding: 3rem;
+  padding: 4rem;
   margin-top: 2rem;
 }
 .subscribe-project {
@@ -698,7 +698,7 @@ font-family: 'Roboto', sans-serif;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 3rem;
+  padding: 0 4rem;
 }
 
 .footer-menu-sec > div {
