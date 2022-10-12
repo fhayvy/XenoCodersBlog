@@ -10,6 +10,13 @@
   box-sizing: border-box;
 }
 
+:root {
+  --color-bg: rgb(83, 4, 83);
+  --color-secondary-text: #D69ADF;
+  --color-primary-text: #AE1DC7;
+  --color-sub: #4C0B57;
+}
+
 body {
   max-width: 1440px;
   width: 100%;
@@ -19,7 +26,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem 2rem;
+  padding: 1rem 5rem;
 }
 
 .main-header .navbar {
@@ -38,7 +45,7 @@ body {
 
 /*......................................................... Footer ......................................*/
 
-footer{
+/* footer{
   display: flex;
   width: 100%;
   flex-direction: column;
@@ -50,9 +57,10 @@ footer{
       width: 100%;
       flex-direction: column;
       align-items: center;
-}
+} */
+
 /* TOP SECTION OF FOOTER */
-.footer-top{
+/* .footer-top{
   display: flex;
   justify-content: space-between;
   padding: 1rem 2rem;
@@ -150,9 +158,10 @@ input{
 form{
   display: flex;
   width: 100%;
-}
+} */
+
 /* BOTTOM SECTION OF FOOTER */
-.footer-bottom{
+/* .footer-bottom{
   display: flex;
   width: 100%;
   align-items: center;
@@ -194,10 +203,10 @@ form{
 
 .footer-2{
   display: none;
-}
+} */
 
 /* GET WHEN SCREEN SIZE IS 768PX */
-@media screen and (max-width:768px) {
+/* @media screen and (max-width:768px) {
   .footer-2{
       display: flex;
       align-content: center;
@@ -215,7 +224,7 @@ form{
   .footer-1{
       display: none;
   }
-}
+} */
 
 
 /* ............................................Home Page .............................................. */
@@ -236,22 +245,23 @@ h1, h2, h3, h4, h5, h6 {
 font-family: 'Oswald', sans-serif;
 }
 
-p, button {
+p, a, span {
 font-family: 'Roboto', sans-serif;
 }
 
 .landing-container {
   max-width: 1200px;
-  width: 85%;
+  width: 92%;
   margin: 0 auto;
 }
 
 .landing-section-container {
-  margin-top: 2em;
+  margin: 5rem 0;
 }
 
 .landing-section-content {
   display: flex;
+  gap: 2rem;
 }
 
 .landing-line-divider {
@@ -325,18 +335,18 @@ font-family: 'Roboto', sans-serif;
 .landing-each_timeline .landing-each_time {
   margin-left: .3em;
   font-weight: 500;
-  font-style: Medium;
   color: #000000;
   font-size: 1.25rem;
 
 }
 
 .landing-readmore-btn {
+  display: inline-block;
   border: none;
   background: #CD8CD8;
   padding: .6em 1em .6em 2em;
   border-radius: .25rem;
-  background-image: url(./assets/readmore_arrow.png);
+  background-image: url(../media/readmore_arrow.png);
   background-repeat: no-repeat;
   background-position: left;
   background-size: .6rem;
@@ -344,18 +354,16 @@ font-family: 'Roboto', sans-serif;
   color: #FFFFFF;
   font-size: 1.25rem;
   font-weight: 500;
-  font-style: Medium;
   cursor: pointer;
+  margin-top: 1rem;
 }
 
-.landing-column-title {
+.landing-column-title, .landing-column-title a {
   font-size: 2.3rem;
   color: #000000;
-  font-style: SemiBold;
   font-weight: 600;
   margin-bottom: 1em;
   line-height: 3.68rem;
-  Fill: Solid;
 }
 
 
@@ -369,24 +377,22 @@ font-family: 'Roboto', sans-serif;
   font-weight: 400;
   font-size: 1.25rem;
   line-height: 1.44rem;
-  font-style: Regular;
-  Fill: Solid;
 }
 
 .landing-search-action {
   /* padding: .5em 2em .5em 3em; */
   width: 8rem;
   background: #FFFFFF;
-  background-image: url(./assets/search_icon.png);
+  background-image: url(../media/search_icon.png);
   background-repeat: no-repeat;
   background-position: left;
   background-size: 1.2rem;
   background-position-x: .5rem;
   border: none;
+  outline: none;
   font-size: 1.25rem;
   text-align: right;
   font-weight: 400;
-  Fill: Solid;
   /* line-height: 1.44rem; */
 }
 
@@ -398,7 +404,6 @@ font-family: 'Roboto', sans-serif;
   color: #000000;
   font-weight: 500;
   font-size: Medium;
-  Fill: Solid;
   line-height: 1.43rem;
 }
 
@@ -410,8 +415,6 @@ font-family: 'Roboto', sans-serif;
   font-size: 1.25rem;
   color: #000000;
   font-weight: 500;
-  font-style: Medium;
-  Fill: Solid;
   line-height: 1.43rem;
 }
 
@@ -443,13 +446,6 @@ font-family: 'Roboto', sans-serif;
   font-weight: 500;
   font-size: 1.25rem;
   line-height: 1.44rem;
-  font-style: Medium;
-  Fill: Solid;
-}
-
-.landing-right-arrow {
-  margin: .4em 0 0 .7em;
-
 }
 
 .landing-article-layout {
@@ -466,13 +462,11 @@ font-family: 'Roboto', sans-serif;
   margin-left: 1em;
 }
 
-.landing-article-head {
+.landing-article-head, .landing-article-head a {
   color: #000000;
   font-weight: 600;
   font-size: 2rem;
   line-height: 2.93rem;
-  font-style: semibold;
-  Fill: Solid;
   margin-bottom: .5em;
 }
 
@@ -481,8 +475,6 @@ font-family: 'Roboto', sans-serif;
   font-weight: 400;
   font-size: 1rem;
   line-height: 1.18rem;
-  font-style: Regular;
-  Fill: Solid;
   margin-bottom: 1em;
 }
 
@@ -519,7 +511,7 @@ font-family: 'Roboto', sans-serif;
 .landing-fourth-row .landing-layout-cat {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  gap: 1rem
 }
 
 .landing-each-cat {
@@ -527,25 +519,202 @@ font-family: 'Roboto', sans-serif;
   font-weight: 500;
   font-size: 1.25rem;
   line-height: 1.43rem;
-  font-style: Regular;
-  Fill: Solid;
-  padding: .5em 1em;
+  padding: 1em 1.5em;
   border-radius: .94rem;
-  border-width: thin;
+  background-color: #FCFCFC;
+  border: 2px solid #000000;
 }
 
 .landing-each-cat:hover {
   border: none;
   color: #FFFFFF;
   background: #CD8CD8;
-  Fill: Solid;
   cursor: pointer;
+  border: 2px solid #CD8CD8;
 }
 
-.landing-each-cat + .landing-each-cat {
-  margin-left: .8em;
+/*................................................. Footer ................................................*/
+/* FIFTH SECTION */
+.footer-subscribe {
+  background: linear-gradient(90deg, var(--color-primary-text), var(--color-secondary-text));
+  padding: 3rem;
+  margin-top: 2rem;
+}
+.subscribe-project {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4rem;
+}
+.subsribe-text {
+  width: 50%;
+  color: white;
 }
 
-.landing-layout-cat {
-  margin-bottom: 2em;
+.subsribe-text h3 {
+  font-size: 1.8rem;
+  padding-bottom: .8rem;
+}
+
+.subscribe-form-section {
+  display: flex;
+  gap: 15px;
+}
+
+.img-text {
+  display: flex;
+  gap: 10px;
+  background-color: rgb(236, 172, 222);
+  padding: 1rem;
+}
+
+.img-text input[type=email]{
+    border: none;
+    background-color: transparent;
+    font-size: 1.6rem;
+    border-bottom: 1px solid #fff;
+    outline: none;
+}
+
+.subscribe-form-section button{
+  padding: 1rem 1rem;
+  color: var(--color-bg);
+  line-height: 25px;
+  font-size: 20px;
+  background: #fff;
+  border-radius: 5px;  
+  border: 1px solid #FFF;
+  cursor: pointer;
+  outline: none;
+}
+.subscribe-form-section button:hover{
+  padding: 1rem 1rem;
+  color: #fff;
+  line-height: 25px;
+  font-size: 20px;
+  background: transparent;
+  border-radius: 5px;  
+  border: 1px solid #ffffff;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.3 ease-in-out;
+}
+
+.subscribe-form-section input[type=email]{
+  border: none;
+  background-color: transparent;
+  color: #fff;
+  font-size: 1.4rem;
+  width: 100%;
+}
+
+
+
+/* MOBILE VIEW */
+@media screen and (max-width:768px) {
+  
+  .span_image {
+    font-size: .8rem;
+  }
+  .article-hero-image {
+    width: 100%;
+  }
+  .article-hero-image img{
+    margin: 2rem 0 0 0;
+  }
+.article-main-section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 2rem 0;
+}
+.writeup {
+  width: 100%;
+  padding-bottom: 2rem;
+}
+.vertical-line {
+  display: none;
+}
+.article-sidebar {
+   margin: 0;
+}
+.article-subscribe-container {
+  width: 100%;
+}
+.subscribe-article {
+  display: flex;
+  flex-direction: column;
+}
+
+.img-text{
+  width: 100%;
+}
+
+.articles-palette {
+  width: 100%
+}
+.bottom-read-more-article {
+  margin-right: 1rem;
+}
+  .subscribe-project{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+.bottom-read-more-article h3 {
+    font-size: 1.2rem;
+}
+.article-btn {
+  padding: 0.3rem 0.7rem;
+  color: #fff;
+  line-height: 25px;
+  font-size: 15px;
+}
+.subsribe-text h3 {
+  font-size: 1.5rem;
+}
+
+.subscribe-form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+
+}
+
+.subsribe-text {
+  width: 100%;
+}
+.subscribe-article button {
+  width: 100%;
+}
+.footer-subscribe {
+  padding: 2rem;
+}
+}
+
+.footer-menu-sec {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 3rem;
+}
+
+.footer-menu-sec > div {
+  flex-basis: 33%;
+}
+
+.footer-menu-sec > div img {
+  display: flex;
+  margin: 0 auto;
+}
+
+.footer-menu-sec a {
+  margin-right: 0.5rem;
+  color: #000000;
+}
+
+.footer-menu-sec p {
+  text-align: right;
 }
