@@ -40,7 +40,7 @@
                     </div>
                     <div class="landing-hero-content">
                         <p class="landing-hero-text">
-                            {{post.text | safe |slice:":100"}}
+                            {{post.text | safe |slice:":250"}}
                         </p>
                     </div>
                     <div class="landing-timeline-content">
@@ -57,10 +57,10 @@
                 </div>
 
                 <div class="landing-right_column landing-each_column">
-                    <div class="landing-page-img">
+                    <div class="landing-page-img hero-col-right">
                         {% if post.header_image %}
-                            <div class="blog-post-article-hero-image">
-                                <img src="{{post.header_image.url}}" alt="An image kuda man"/> 
+                            <div class="blog-post-article-hero-image first">
+                                <img src="{{post.header_image.url}}" alt="An image kuda man"/>
                             </div>
                         {% else %}
                             <div class="blog-post-article-hero-image">
@@ -96,7 +96,7 @@
 
         <div class="landing-bottom_row">
             <div class="landing-section-content">
-                <div class="landing-left_column landing-each_column">
+                <div class="landing-left_column landing-each_column landing-column-middle">
                     {% for post in all_posts_list %}
                         {% if forloop.counter == 2 %}
                     <div class="landing-page-img">
@@ -136,22 +136,22 @@
                     {% endfor %}
                 </div>
   
-    <div class="landing-right_column landing-each_column">
-        {% for post in all_posts_list|slice:"2:7" %}
+    <div class="landing-right_column landing-each_column landing-column-middle">
+        {% for post in all_posts_list|slice:":3" %}
         <div class="landing-article-layout">
             {% if post.header_image %}
-                <div class="blog-post-article-hero-image">
+                <div class="blog-post-article-hero-image right">
                     <img src="{{post.header_image.url}}" alt="An image kuda man"/> 
                 </div>
             {% else %}
-                <div class="blog-post-article-hero-image">
+                <div class="blog-post-article-hero-image right">
                 <img src="{% static 'media/JP_logo.png' %}" alt="This is the hero image" class="landing-page-image" />
                 </div>
             {% endif %}
-            <div class="landing-article-content">
+            <div class="landing-article-content right">
                 <h3 class="landing-article-head"><a href="{% url 'post' post.id %}">{{post.title}}</a></h3>
                 <p class="landing-article-text">
-                    {{post.text | safe |slice:":100"}}
+                    {{post.text | safe |slice:":90"}}
                 </p>
                 <div class="landing-article-action">
                     <a class="landing-readmore-btn" onclick="location.href='{% url 'post' post.id %}'">Read more</a>
@@ -173,13 +173,13 @@
             </div>
         </div>
         <div class="landing-third-row">
-            {% for post in all_posts_list %}    
-            <div class="landing-section-three-column landing-article-layout">
-                <div>
+            {% for post in all_posts_list|slice:":3" %}    
+            <div class="landing-section-three-column landing-article-layout bottom">
+                <div class="landing-bottom">
                     {% if post.header_image %}
                             <img src="{{post.header_image.url}}" alt="An image kuda man"/> 
                         {% else %}
-                        <img src="{% static 'media/JP_logo.png' %}" alt="This is the hero image" class="landing-page-image" />
+                        <img src="{% static 'media/JP2_logo.png' %}" alt="This is the hero image" class="landing-page-image" />
                         {% endif %}
                 </div>
                 <h4><a href="{% url 'post' post.id %}">{{post.title}}</a></h4>
