@@ -36,8 +36,9 @@ urlpatterns = [
 
 # url(r'^ckeditor/upload/', login_required(ckeditor_views.upload), name='ckeditor_upload'),
 # url(r'^ckeditor/browse/', never_cache(login_required(ckeditor_views.browse)), name='ckeditor_browse'),
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# img_path = "your_server_address" + settings.MEDIA_URL + unique_img
+# if settings.DEBUG:
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
 handler404 = 'xenocoders.views.custom_page_not_found_view'

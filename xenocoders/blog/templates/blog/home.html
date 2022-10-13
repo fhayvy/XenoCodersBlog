@@ -32,7 +32,13 @@
                     </div>
                     <div class="landing-profile-flex">
                         <div class="landing-profile-pic">
-                            <img src="{% static 'media/profile_head.png' %}" alt="first profile head of the page" />
+                            {% if user.userprofile.profile_pic.url %}
+                                <img src="{{user.userprofile.profile_pic.url}}"> 
+                            {% else %}
+                                <img src="{% static 'media/profile_head.png' %}" alt="first profile head of the page" />
+                            {% endif %}
+
+                            
                         </div>
                         <div>
                             <p class="landing-profile-text">{{post.author}}</p>

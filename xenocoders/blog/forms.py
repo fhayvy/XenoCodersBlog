@@ -1,8 +1,15 @@
 from django.forms import ModelForm
-from .models import Post, Category
+from .models import Post, Category, UserProfile
 from django import forms
 
 
+class  EditProfileForm(forms.ModelForm):
+	
+	class Meta:
+		model = UserProfile
+		exclude = ["user"]
+
+        
 
 class PostForm(forms.ModelForm):  
 	category = forms.ModelMultipleChoiceField(
