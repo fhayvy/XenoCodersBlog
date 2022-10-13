@@ -1,13 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
 from .models import Post, Category
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.core.mail import send_mail, BadHeaderError
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.conf import settings
-from .forms import Author
+from .forms import PostForm
 from django.shortcuts import redirect
-from .forms import ContactForm
+from .forms import ContactForm, PostForm
 from django.contrib import messages
 
 
@@ -18,30 +18,28 @@ class AllPostsView(ListView):
     template_name = "blog/home.html"
     context_object_name = "all_posts_list"
 
-#     def get_context_data(self, *args, **kwargs):
-#         # post_title = Post.objects.filter(title)
-#         stuff = get_object_or_404(Post, id=self.kwargs[self.title])
+    def get_context_data(self, *args, **kwargs):
 
-#         context = super(AllPostsView, self).get_context_data(*args, **kwargs)
-
-#         context["post_title"] = stuff
-#         return context
-
-# def AllPostsView(request):
-#     return render(request, "blog/home.html")
+        context = super(AllPostsView, self).get_context_data(*args, **kwargs)
+        return context
 
 
 class CreatePostView(CreateView):
     model = Post
-    form = Author()
     template_name = "blog/post_form.html"
     fields = ["title", "created_on", "text", "status", "category"]
     success_url = reverse_lazy('home')
 
-
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+    def get_context_data(self, *args, **kwargs):
+        form = PostForm()
+        context = super(CreatePostView, self).get_context_data(*args, **kwargs)
+
+        context["form"] = form
+        return context
 
 
 class AddCategoryView(CreateView):
@@ -55,6 +53,27 @@ class PostDetailView(DetailView):
     model = Post
     template_name = "blog/post_detail.html"
 
+    def get_context_data(self, *args, **kwargs):
+        
+        cat_menu = Post.objects.all()
+
+        context = super(PostDetailView, self).get_context_data(*args, **kwargs)
+        context["posts"] = Post.objects.filter(category__name=self.kwargs.get('pk'))
+
+        stuff = get_object_or_404(Post, id=self.kwargs['pk'])
+
+        total_likes = stuff.total_likes()
+        cates = stuff.category.all()
+
+        liked = False
+        if stuff.likes.filter(id=self.request.user.id).exists():
+            liked = True
+
+        context["total_likes"] = total_likes
+        context["likes"] = liked
+        context["cates"] = cates
+
+        return context
 
 class PostUpdateView(UpdateView):
     model = Post
@@ -68,15 +87,14 @@ class PostDeleteView(DeleteView):
 
 
 def CategoryView(request, cates):
-    category_posts = Post.objects.filter(category=cates)
-
+    category_posts = Post.objects.filter(category__name=cates)
 
     context = {
         "category": cates,
         "category_posts": category_posts,
         }
-    return render(request, "blog/category.html", context)
 
+    return render(request, "blog/category.html", context)
 
 
 def contact(request):
@@ -105,3 +123,16 @@ def contact(request):
 
 def about_us(request):
     return render(request, 'blog/about_us.html')
+
+
+def LikeView(request, pk):
+    post = get_object_or_404(Post, id=request.POST.get('post_id'))
+    liked = False
+    if post.likes.filter(id=request.user.id).exists():
+        post.likes.remove(request.user)
+        liked = False
+    else:
+        post.likes.add(request.user) 
+        liked = True       
+
+    return HttpResponseRedirect(reverse('post', args=[str(pk)]))

@@ -58,7 +58,16 @@
 
                 <div class="landing-right_column landing-each_column">
                     <div class="landing-page-img">
-                        <img src="{% static 'media/hero_img.png' %}" alt="This is the hero image" class="landing-page-image" />
+                        {% if post.header_image %}
+                            <div class="blog-post-article-hero-image">
+                                <img src="{{post.header_image.url}}" alt="An image kuda man"/> 
+                            </div>
+                        {% else %}
+                            <div class="blog-post-article-hero-image">
+                            <img src="{% static 'media/hero_img.png' %}" alt="This is the hero image" class="landing-page-image" />
+                            </div>
+                        {% endif %}
+                        
                     </div>
                 </div>
                     {% endif %}
@@ -77,7 +86,7 @@
             </div>
             <div class="landing-flex-right">
                 <div>
-                    <a class="landing-link_text" href="#">All JavaScript Articles</a>
+                    <a class="landing-link_text" href="{% url 'category' 'Javascript' %}">All JavaScript Articles</a>
                 </div>
                 <div class="landing-right-arrow">
                     <img src="{% static 'media/arrow_right.png' %}" alt="Pointing of right arrow"/>
@@ -89,9 +98,17 @@
             <div class="landing-section-content">
                 <div class="landing-left_column landing-each_column">
                     {% for post in all_posts_list %}
-                        {% if forloop.counter == 1 %}
+                        {% if forloop.counter == 2 %}
                     <div class="landing-page-img">
-                        <img src="{% static 'media/fintech_image.png' %}" alt="An image in section two of the page" class="landing-page-image"/>
+                        {% if post.header_image %}
+                            <div class="blog-post-article-hero-image">
+                                <img src="{{post.header_image.url}}" alt="An image kuda man"/> 
+                            </div>
+                        {% else %}
+                            <div class="blog-post-article-hero-image">
+                            <img src="{% static 'media/hero_img.png' %}" alt="This is the hero image" class="landing-page-image" />
+                            </div>
+                        {% endif %}
                     </div>
                     <div>
                         <h2 class="landing-column-title"><a href="{% url 'post' post.id %}">{{post.title}}</a></h2>
@@ -120,11 +137,17 @@
                 </div>
   
     <div class="landing-right_column landing-each_column">
-        {% for post in all_posts_list %}
+        {% for post in all_posts_list|slice:"2:7" %}
         <div class="landing-article-layout">
-            <div class="landing-hero-img">
-                <img src="{% static 'media/JP_logo.png' %}" alt="Just project" class="landing-just-image" />
-            </div>
+            {% if post.header_image %}
+                <div class="blog-post-article-hero-image">
+                    <img src="{{post.header_image.url}}" alt="An image kuda man"/> 
+                </div>
+            {% else %}
+                <div class="blog-post-article-hero-image">
+                <img src="{% static 'media/JP_logo.png' %}" alt="This is the hero image" class="landing-page-image" />
+                </div>
+            {% endif %}
             <div class="landing-article-content">
                 <h3 class="landing-article-head"><a href="{% url 'post' post.id %}">{{post.title}}</a></h3>
                 <p class="landing-article-text">
@@ -153,12 +176,16 @@
             {% for post in all_posts_list %}    
             <div class="landing-section-three-column landing-article-layout">
                 <div>
-                    <img src="{% static 'media/JP2_logo.png' %}" alt="Just Project logo">
+                    {% if post.header_image %}
+                            <img src="{{post.header_image.url}}" alt="An image kuda man"/> 
+                        {% else %}
+                        <img src="{% static 'media/JP_logo.png' %}" alt="This is the hero image" class="landing-page-image" />
+                        {% endif %}
                 </div>
-                <h3 class="landing-article-head"><a href="{% url 'post' post.id %}">{{post.title}}</a></h3>
-                <p class="landing-article-text">
+                <h4><a href="{% url 'post' post.id %}">{{post.title}}</a></h4>
+                {% comment %} <p class="landing-article-text">
                     {{post.text | safe |slice:":100"}}
-                </p>
+                </p> {% endcomment %}
                 <div>
                     <a class="landing-readmore-btn" onclick="location.href='{% url 'post' post.id %}'">Read more</a>
                 </div>
