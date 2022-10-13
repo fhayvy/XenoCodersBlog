@@ -1,13 +1,18 @@
 from django.forms import ModelForm
-from .models import Post
+from .models import Post, Category
 from django import forms
 
 
 
-class Author(ModelForm):
-    class Meta:
-        model = Post
-        fields = "__all__"
+class PostForm(forms.ModelForm):  
+	category = forms.ModelMultipleChoiceField(
+		widget=forms.CheckboxSelectMultiple,
+		queryset=Category.objects.all(),
+		required=True)
+
+	class Meta: 
+			model = Post 
+			exclude = ['author', 'likes']
 
 
 class ContactForm(forms.Form):

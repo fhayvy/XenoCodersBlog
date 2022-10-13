@@ -6,10 +6,13 @@
 <main>
     <!--  FIRST SECTION STARTS -->
     <section class="blog-post-heading_section">
+        {% comment %} <img src="{{post.header_image.url}}"<br> {% endcomment %}
         
             <div class="blog-post-article-category">
-                {% for category in post.category.all %}
-                <h3>{{category}}</h3>
+                {% for cate in post.category.all %}
+
+                    <a href="{% url 'category' cate %}">{{cate}}</a>
+
                 {% endfor %}
             </div>
 
@@ -31,10 +34,11 @@
                     <span><strong>{{post.created_on}}</strong></span>
                 </div>
             </div>
-            
-            <div class="blog-post-article-hero-image">
-                <img src="{% static 'media/fintech_img.png' %}" alt="An image kuda man"/> 
-            </div>
+            {% if post.header_image %}
+                <div class="blog-post-article-hero-image">
+                    <img src="{{post.header_image.url}}" alt="An image kuda man"/> 
+                </div>
+            {% endif %}
         </div>
     </section>
     <!--  FIRST SECTION ENDS -->
