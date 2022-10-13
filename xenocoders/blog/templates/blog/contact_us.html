@@ -10,14 +10,14 @@
     </div>
 
   <div class="contact-us-right">
-    {% include '_partials/messages.html' %}
+    
     <form action="{% url 'contact' %}" method="POST" class="contact-form" novalidate>
       {% csrf_token %}
         {{form.as_p}}
         <div class="contact-submit-btn"><input type="submit" value="Send Message" /></div>
+        {% include '_partials/messages.html' %}
     </form>
   </div>
-
 </div>
 
 {% endblock %}
