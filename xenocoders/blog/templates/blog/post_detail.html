@@ -2,7 +2,9 @@
 {% load static %}
 
 {% block content %}
-
+{% for cat in cat_menu %}
+{{cat}}
+{% endfor %}
 <main>
     <!--  FIRST SECTION STARTS -->
     <section class="blog-post-heading_section">
@@ -40,6 +42,8 @@
                 </div>
             {% endif %}
         </div>
+        <br><br>
+
     </section>
     <!--  FIRST SECTION ENDS -->
 
@@ -75,6 +79,24 @@
         </div>
     </section>
     <!--  SECOND SECTION ENDS -->
+
+    <!--  LIKE SECTION BEGINS -->
+
+    <form action="{% url 'like_post' post.pk %}" method="POST">
+        {% csrf_token %}
+    
+        {% if liked %}
+    
+            <button type="submit", name="post_id", value="{{ post.id }}">Unlike</button>
+    
+        {% else %}
+    
+            <button type="submit", name="post_id", value="{{ post.id }}">Like</button> - {{ total_likes }} Likes
+    
+        {% endif %}
+    </form>
+
+    <!--  LIKE SECTION ENDS -->
 
     <!-- COMMENT SECTION STARTS -->
     <section class="blog-post-comment-extra">
@@ -159,6 +181,8 @@
     <!-- COMMENT SECTION ENDS -->
 
     <!--  FOURTH SECTION STARTS -->
+{% comment %} {% for cat in cat_menu %} {% endcomment %}
+    {% comment %} {{cat}} {% endcomment %}
     <section class="blog-post-articles-palette">
         <!-- column1 -->
         <div class="blog-post-articles-palette-contaier">
@@ -167,105 +191,159 @@
             </div>
 
             <div class="blog-post-other-articles">
+                
                 <div class="blog-post-bottom-read-more-article">
+                    {% for cat in cat_menu|slice:":1" %}
+
                     <div>
-                        <img src="{% static 'media/JP_Logo.png' %}" alt="Just project" />
+                        
+                        <img src="{% static 'media/JP_logo.png' %}" alt="An image kuda man"/> 
+                        
                     </div>
                     <div>
-                        <h3>Just Project Launches</h3>
+                        <h3>{{cat}}</h3>
+
                         <p class="blog-post-read-more-description">
+                            {{cat.text | safe |slice:":100"}}
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                             Laoreet massa amet malesuada montes,
                         </p>
                         <div>
-                            <button class="blog-post-article-btn">Read more</button>
+                            <button class="blog-post-article-btn" onclick="location.href='{% url 'post' cat.id %}'">Read more</button>
                         </div>
+                        {% endfor %}
+
                     </div>
                 </div>
                 
                 <div class="blog-post-bottom-read-more-article">
+                    {% for cat in cat_menu|slice:"1:2" %}
+
+                    <div>
+                        
+                        <img src="{% static 'media/JP_logo.png' %}" alt="An image kuda man"/> 
+                        
+                    </div>
+                    <div>
+                        <h3>{{cat}}</h3>
+
+                        <p class="blog-post-read-more-description">
+                            {{cat.text | safe |slice:":100"}}
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Laoreet massa amet malesuada montes,
+                        </p>
                         <div>
-                            <img src="{% static 'media/JP_Logo.png' %}" alt="Just project" />
+                            <button class="blog-post-article-btn" onclick="location.href='{% url 'post' cat.id %}'">Read more</button>
                         </div>
-                        <div>
-                            <h3>Just Project Launches</h3>
-                            <p class="blog-post-read-more-description">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                Laoreet massa amet malesuada montes,
-                            </p>
-                            <div>
-                                <button class="blog-post-article-btn">Read more</button>
-                            </div>
-                        </div>
+                        {% endfor %}
+
+                    </div>
                 </div>
                 
+                
+                
                 <div class="blog-post-bottom-read-more-article">
+                    {% for cat in cat_menu|slice:"2:3" %}
+
+                    <div>
+                        
+                        <img src="{% static 'media/JP_logo.png' %}" alt="An image kuda man"/> 
+                        
+                    </div>
+                    <div>
+                        <h3>{{cat}}</h3>
+
+                        <p class="blog-post-read-more-description">
+                            {{cat.text | safe |slice:":100"}}
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Laoreet massa amet malesuada montes,
+                        </p>
                         <div>
-                            <img src="{% static 'media/JP_Logo.png' %}" alt="Just project" />
+                            <button class="blog-post-article-btn" onclick="location.href='{% url 'post' cat.id %}'">Read more</button>
                         </div>
-                        <div>
-                            <h3>Just Project Launches</h3>
-                            <p class="blog-post-read-more-description">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                Laoreet massa amet malesuada montes,
-                            </p>
-                            <div>
-                                <button class="blog-post-article-btn">Read more</button>
-                            </div>
-                        </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
                 </div>
             </div>
         </div>
+{% comment %} {% endfor %} {% endcomment %}
 
         <!-- column2 -->
         <div class="blog-post-articles-palette-contaier">
             <div class="blog-post-other-articles">
                 <div class="blog-post-bottom-read-more-article">
+                    {% for cat in cat_menu|slice:"3:4" %}
+
                     <div>
-                        <img src="{% static 'media/JP_Logo.png' %}" alt="Just project" />
+                        
+                        <img src="{% static 'media/JP_logo.png' %}" alt="An image kuda man"/> 
+                        
                     </div>
                     <div>
-                        <h3>Just Project Launches</h3>
+                        <h3>{{cat}}</h3>
+
                         <p class="blog-post-read-more-description">
+                            {{cat.text | safe |slice:":100"}}
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                             Laoreet massa amet malesuada montes,
                         </p>
                         <div>
-                            <button class="blog-post-article-btn">Read more</button>
+                            <button class="blog-post-article-btn" onclick="location.href='{% url 'post' cat.id %}'">Read more</button>
                         </div>
+                        {% endfor %}
+
                     </div>
                 </div>
-                
+
                 <div class="blog-post-bottom-read-more-article">
+                    {% for cat in cat_menu|slice:"4:5" %}
+
+                    <div>
+                        
+                        <img src="{% static 'media/JP_logo.png' %}" alt="An image kuda man"/> 
+                        
+                    </div>
+                    <div>
+                        <h3>{{cat}}</h3>
+
+                        <p class="blog-post-read-more-description">
+                            {{cat.text | safe |slice:":100"}}
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Laoreet massa amet malesuada montes,
+                        </p>
                         <div>
-                            <img src="{% static 'media/JP_Logo.png' %}" alt="Just project" />
+                            <button class="blog-post-article-btn" onclick="location.href='{% url 'post' cat.id %}'">Read more</button>
                         </div>
-                        <div>
-                            <h3>Just Project Launches</h3>
-                            <p class="blog-post-read-more-description">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                Laoreet massa amet malesuada montes,
-                            </p>
-                            <div>
-                                <button class="blog-post-article-btn">Read more</button>
-                            </div>
-                        </div>
+                        {% endfor %}
+
+                    </div>
                 </div>
+                        
                 
                 <div class="blog-post-bottom-read-more-article">
+                    {% for cat in cat_menu|slice:"5:6" %}
+
+                    <div>
+                        
+                        <img src="{% static 'media/JP_logo.png' %}" alt="An image kuda man"/> 
+                        
+                    </div>
+                    <div>
+                        <h3>{{cat}}</h3>
+
+                        <p class="blog-post-read-more-description">
+                            {{cat.text | safe |slice:":100"}}
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Laoreet massa amet malesuada montes,
+                        </p>
                         <div>
-                            <img src="{% static 'media/JP_Logo.png' %}" alt="Just project" />
+                            <button class="blog-post-article-btn" onclick="location.href='{% url 'post' cat.id %}'">Read more</button>
                         </div>
-                        <div>
-                            <h3>Just Project Launches</h3>
-                            <p class="blog-post-read-more-description">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                Laoreet massa amet malesuada montes,
-                            </p>
-                            <div>
-                                <button class="blog-post-article-btn">Read more</button>
-                            </div>
-                        </div>
+                        {% endfor %}
+
+                    </div>
                 </div>
             </div>
         </div>
@@ -274,51 +352,76 @@
         <div class="blog-post-articles-palette-contaier">
             <div class="blog-post-other-articles">
                 <div class="blog-post-bottom-read-more-article">
+                    {% for cat in cat_menu|slice:"6:7" %}
+
                     <div>
-                        <img src="{% static 'media/JP_Logo.png' %}" alt="Just project" />
+                        
+                        <img src="{% static 'media/JP_logo.png' %}" alt="An image kuda man"/> 
+                        
                     </div>
                     <div>
-                        <h3>Just Project Launches</h3>
+                        <h3>{{cat}}</h3>
+
                         <p class="blog-post-read-more-description">
+                            {{cat.text | safe |slice:":100"}}
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                             Laoreet massa amet malesuada montes,
                         </p>
                         <div>
-                            <button class="blog-post-article-btn">Read more</button>
+                            <button class="blog-post-article-btn" onclick="location.href='{% url 'post' cat.id %}'">Read more</button>
                         </div>
+                        {% endfor %}
+
                     </div>
                 </div>
                 
                 <div class="blog-post-bottom-read-more-article">
+                    {% for cat in cat_menu|slice:"7:8" %}
+
+                    <div>
+                        
+                        <img src="{% static 'media/JP_logo.png' %}" alt="An image kuda man"/> 
+                        
+                    </div>
+                    <div>
+                        <h3>{{cat}}</h3>
+
+                        <p class="blog-post-read-more-description">
+                            {{cat.text | safe |slice:":100"}}
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Laoreet massa amet malesuada montes,
+                        </p>
                         <div>
-                            <img src="{% static 'media/JP_Logo.png' %}" alt="Just project" />
+                            <button class="blog-post-article-btn" onclick="location.href='{% url 'post' cat.id %}'">Read more</button>
                         </div>
-                        <div>
-                            <h3>Just Project Launches</h3>
-                            <p class="blog-post-read-more-description">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                Laoreet massa amet malesuada montes,
-                            </p>
-                            <div>
-                                <button class="blog-post-article-btn">Read more</button>
-                            </div>
-                        </div>
+                        {% endfor %}
+
+                    </div>
                 </div>
                 
                 <div class="blog-post-bottom-read-more-article">
+                    {% for cat in cat_menu|slice:"8:9" %}
+
+                    <div>
+                        
+                        <img src="{% static 'media/JP_logo.png' %}" alt="An image kuda man"/> 
+                        
+                    </div>
+                    <div>
+                        <h3>{{cat}}</h3>
+
+                        <p class="blog-post-read-more-description">
+                            {{cat.text | safe |slice:":100"}}
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Laoreet massa amet malesuada montes,
+                        </p>
                         <div>
-                            <img src="{% static 'media/JP_Logo.png' %}" alt="Just project" />
+                            <button class="blog-post-article-btn" onclick="location.href='{% url 'post' cat.id %}'">Read more</button>
                         </div>
-                        <div>
-                            <h3>Just Project Launches</h3>
-                            <p class="blog-post-read-more-description">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                Laoreet massa amet malesuada montes,
-                            </p>
-                            <div>
-                                <button class="blog-post-article-btn">Read more</button>
-                            </div>
-                        </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
                 </div>
             </div>
         </div>

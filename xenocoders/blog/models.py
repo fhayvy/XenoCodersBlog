@@ -19,6 +19,21 @@ class Category(models.Model):
     def get_absolute_url(self):
         return reverse("home")
 
+
+
+class UserProfile(models.Model):
+    user = models. OneToOneField(settings.AUTH_USER_MODEL, null=True, on_delete=models.CASCADE)
+    bio = models.TextField()
+    profile_pic = models.ImageField(blank=True, null=True, upload_to="images/profile/", default='images/profile/profile1.png/')
+    website_url = models.CharField(max_length=250, blank=True, null=True)
+    facebook_url = models.CharField(max_length=250, blank=True, null=True)
+    twitter_url = models.CharField(max_length=250, blank=True, null=True)
+    instagram_url = models.CharField(max_length=250, blank=True, null=True)
+
+    def __str__(self):
+        return str(self.user)
+
+
 class Post(models.Model):
     options = (
         ('draft', 'Draft'),
@@ -45,3 +60,5 @@ class Post(models.Model):
     
     class Meta:
         ordering = ['-created_on']
+
+

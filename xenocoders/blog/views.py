@@ -5,7 +5,7 @@ from django.urls import reverse_lazy, reverse
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse, HttpResponseRedirect
 from django.conf import settings
-from .forms import PostForm
+from .forms import PostForm, UserProfile
 from django.shortcuts import redirect
 from .forms import ContactForm, PostForm
 from django.contrib import messages
@@ -26,8 +26,9 @@ class AllPostsView(ListView):
 
 class CreatePostView(CreateView):
     model = Post
+    form_class = PostForm
     template_name = "blog/post_form.html"
-    fields = ["title", "created_on", "text", "status", "category"]
+    # fields = ["title", "created_on", "text", "status", "category"]
     success_url = reverse_lazy('home')
 
     def form_valid(self, form):
@@ -54,6 +55,7 @@ class PostDetailView(DetailView):
     template_name = "blog/post_detail.html"
 
     def get_context_data(self, *args, **kwargs):
+        form = PostForm()
         
         cat_menu = Post.objects.all()
 
@@ -72,8 +74,11 @@ class PostDetailView(DetailView):
         context["total_likes"] = total_likes
         context["likes"] = liked
         context["cates"] = cates
+        context["form"] = form
+        context["cat_menu"] = cat_menu
 
         return context
+        
 
 class PostUpdateView(UpdateView):
     model = Post

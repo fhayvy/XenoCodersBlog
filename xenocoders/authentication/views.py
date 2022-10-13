@@ -17,6 +17,7 @@ from django.conf import settings
 from django.views import View
 import threading
 from django.views.generic import DetailView
+from blog.forms import EditProfileForm
 
 
 
@@ -292,3 +293,16 @@ class ShowProfilePageView(DetailView):
         # context["current_page_user"] = current_page_user
         # context["posts"] = posts
         return context
+
+
+def edit_profile(request, pk):
+    form = EditProfileForm
+    if request.method == 'POST':
+        form = EditProfileForm(request.POST)
+        if form.is_valid():
+            form.instance.user = request.user
+
+    context = {
+        "form": form
+    }
+    return render(request, "authentication/edit_profile.html", context)
