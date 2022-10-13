@@ -38,193 +38,19 @@ body {
   color: #000000;
 }
 
+.main-header .login {
+  display: none;
+}
+
 .main-header .logout {
-  display: none;
+  background-color: var(--color-primary-text);
+  border-radius: 2px;
+  padding: 1rem 1.5rem;
 }
 
-
-/*......................................................... Footer ......................................*/
-
-/* footer{
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  align-items: center;
-}
-
-.footer-1{
-      display: flex;
-      width: 100%;
-      flex-direction: column;
-      align-items: center;
-} */
-
-/* TOP SECTION OF FOOTER */
-/* .footer-top{
-  display: flex;
-  justify-content: space-between;
-  padding: 1rem 2rem;
-  border: 1px hidden black;
-  width: 100%;
-  border-radius: 0px;
-  background:linear-gradient(to right,#b00fcd,#CD8CD8);
-}
-
-.foot-top-left-text{
-  width: 53%;
-  align-items: center;
-}
-
-.foot-top-left-text p:first-of-type{
-  font-family: 'Oswald Regular', sans-serif;
-  font-size: 30px;
-  font-weight: 600;
-  line-height: 40px;
-  letter-spacing: 0em;
-  text-align: left;
-  color:#FFFFFF;
-}
-.foot-top-left-text p{
-  font-family: Roboto;
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 23px;
-  letter-spacing: 0em;
-  text-align: left;
+.main-header .logout a {
   color: #FFFFFF;
 }
-.foot-top-right{
-  display: flex;
-  width: 42%;
-  align-items: center;
-  margin-left: 2rem;
-}
-.mail-section{
-  display: flex;
-  height: 79%;
-  border-radius: 6px;
-  padding: 1rem;
-  background-color:#D69ADF;
-  align-items: center;
-  cursor: pointer;
-}
-.mail-icon img{
-  height: 40px;
-  width: 40px;
-  padding: 0;
-  margin: 0;
-}
-input[type=email]{
-  padding: 1rem;
-  color: #FFFFFF;
-}
-::placeholder{
-  color: #FFFFFF;
-  opacity: 1;
-}
-input{
-  background-color: transparent;
-  border: hidden;
-  text-align: center;
-}
-.subscribe-btn{
-  height: 75%;
-  width: 122px;
-  border-radius: 7px;
-  padding: 16px 16px 18px 16px;
-  background-color: #ffffff;
-  text-align: center;
-  display: flex;
-  transition: background-color 1s, ease-out 1s;
-}
-.subscribe-btn button{
-  border: hidden;
-  color:#AE1DC7;
-  background-color: transparent;
-  font-family: Roboto;
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 23px;
-  letter-spacing: 0em;
-  text-align: left;
-  outline: none;
-}
-.subscribe-btn button:hover{
-  color: #FFFFFF;
-}
-.subscribe-btn:hover{
-  background-color: transparent;
-}
-form{
-  display: flex;
-  width: 100%;
-} */
-
-/* BOTTOM SECTION OF FOOTER */
-/* .footer-bottom{
-  display: flex;
-  width: 100%;
-  align-items: center;
-  padding: 1rem 2rem;
-  border: 1px hidden black;
-  height: 125px;
-  justify-content: space-between;
-}
-
-.foot-btm-left{
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-  width:45%;
-  padding:0 ;
-}
-
-.foot-btm-left a{
-  text-decoration: none;
-  color: #000000;
-  white-space: nowrap;
-}
-
-.foot-btm-middle{
-  width: 33%;
-  display: flex;
-  height: 99%;
-
-}
-
-.foot-btm-right{
-  width:20% ;
-  display: flex;
-}
-
-.foot-btm-right p{
-  white-space: nowrap;
-}
-
-.footer-2{
-  display: none;
-} */
-
-/* GET WHEN SCREEN SIZE IS 768PX */
-/* @media screen and (max-width:768px) {
-  .footer-2{
-      display: flex;
-      align-content: center;
-      justify-content: space-between;
-      gap: 2rem;
-      width: 100%;
-      margin: 1rem auto;
-  }
-
-  .footer-2 img:hover{
-      opacity: 0.2;
-      
-  }
-
-  .footer-1{
-      display: none;
-  }
-} */
 
 
 /* ............................................Home Page .............................................. */
@@ -343,7 +169,7 @@ font-family: 'Roboto', sans-serif;
 .landing-readmore-btn {
   display: inline-block;
   border: none;
-  background: #CD8CD8;
+  background: var(--color-primary-text);
   padding: .6em 1em .6em 2em;
   border-radius: .25rem;
   background-image: url(../media/readmore_arrow.png);
@@ -998,7 +824,7 @@ color: #fff;
   width: 100%;
 }
 
-/* ...............................Contact Us Page ..................................... */
+/* ........................................Contact Us Page ........................................ */
 
 .contact-us-container {
   display: flex;
@@ -1085,7 +911,7 @@ color: #fff;
 
 
 
-/* ........................................About Us................................................... */
+/* ...................................................................About Us..................................................... */
 .about-us {
   margin-top: 4rem;
 }
@@ -1271,4 +1097,155 @@ color: #fff;
   font-size: 2.25rem;
   font-weight: 400;
   cursor: pointer;
+}
+
+
+/* ..........................................Write For Us.................................................. */
+.write-for-us {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.write-top-main {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+  width: 70%;
+  margin: 2rem auto;
+}
+
+.write-top-main h1 {
+  color:#B530CB;
+  font-size: 50px;
+  font-weight: 900;
+  line-height: 63px;
+  text-align: left;
+}
+
+.write-top-main p {
+  font-size: 25px;
+  font-weight: 500;
+  line-height: 45px;
+  text-align: left;
+}
+
+.write-card-image{
+  display: flex;
+  gap: 2rem;
+}
+
+.write-card-image {
+  background-image:url("../media/write-box-img.png");
+  background-size: 70%;
+  background-repeat: no-repeat;
+  padding: 2rem;
+  height: 400px;
+}
+
+.write-card-image .write-card-p {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 30px;
+  text-align: left;
+  border-radius: 5rem;
+  flex-basis: 50%;
+}
+
+.write-card-image .write-card-p p {
+  color: #ffffff;
+}
+
+.write-card-image-child {
+  flex-basis: 45%;
+  display: flex;
+  margin-top: -100px;
+  height: 100%;
+}
+
+.write-card-image img {
+  width: 100%;
+}
+
+.write-card h1 {
+  font-size: 40px;
+  font-weight: 900;
+  line-height: 49px;
+  text-align: left;
+  margin-bottom: 3rem;
+  margin-top: 3rem;
+}
+
+.write-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.write-randompic {
+  position: absolute;
+  left: 53%;
+  bottom: -295%;
+}
+
+.write-last-card{
+  margin: 1rem auto;
+  display: flex;
+  gap: 2rem;
+}
+
+.write-last-card-img {
+  flex-basis: 40%;
+}
+
+.write-card-image2 {
+  flex-basis: 50%;
+  gap: 1.6rem;
+  text-align: left;
+}
+
+.write-card-image2 h1 {
+  font-size: 50px;
+  font-weight: 700;
+  line-height: 61px;
+}
+
+.write-card-image2 p{
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 48.7px;
+  color:#840C98;
+}
+
+.write-btn1,
+.write-btn2 {
+  display: inline-block;
+  position: relative;
+  padding: 0.7rem 2rem;
+  white-space: nowrap;
+  border-radius: 2rem;
+  cursor: pointer;
+}
+
+.write-btn1 {
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 900;
+  line-height: 30px;
+  background-color:#C333DB;
+  margin: 4rem auto;
+}
+
+.write-btn2 {
+  color: #443F45;
+  font-size: 18px;
+  font-weight: 900;
+  line-height: 30px;
+  text-align: center;
+  border: 2px solid #C333DB;
+}
+
+.btn-write {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

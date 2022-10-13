@@ -105,3 +105,6 @@ def contact(request):
 
 def about_us(request):
     return render(request, 'blog/about_us.html')
+
+def write_for_us(request):
+    return render(request, 'blog/write-for-us.html')
