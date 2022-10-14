@@ -1,13 +1,14 @@
+from xml.etree.ElementTree import Comment
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
-from .models import Post, Category
+from .models import Post, Category, Comment
 from django.urls import reverse_lazy, reverse
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse, HttpResponseRedirect
 from django.conf import settings
-from .forms import PostForm
+from .forms import PostForm, UserProfile
 from django.shortcuts import redirect
-from .forms import ContactForm, PostForm
+from .forms import ContactForm, PostForm, CommentForm
 from django.contrib import messages
 
 
@@ -26,8 +27,9 @@ class AllPostsView(ListView):
 
 class CreatePostView(CreateView):
     model = Post
+    form_class = PostForm
     template_name = "blog/post_form.html"
-    fields = ["title", "created_on", "text", "status", "category"]
+    # fields = ["title", "created_on", "text", "status", "category"]
     success_url = reverse_lazy('home')
 
     def form_valid(self, form):
@@ -54,6 +56,7 @@ class PostDetailView(DetailView):
     template_name = "blog/post_detail.html"
 
     def get_context_data(self, *args, **kwargs):
+        form = PostForm()
         
         cat_menu = Post.objects.all()
 
@@ -72,12 +75,15 @@ class PostDetailView(DetailView):
         context["total_likes"] = total_likes
         context["likes"] = liked
         context["cates"] = cates
+        context["form"] = form
+        context["cat_menu"] = cat_menu
 
         return context
+        
 
 class PostUpdateView(UpdateView):
     model = Post
-    fields = ["title", "content", "status"]
+    fields = ["title", "text", "status"]
 
 
 class PostDeleteView(DeleteView):
@@ -144,3 +150,14 @@ def LikeView(request, pk):
         liked = True       
 
     return HttpResponseRedirect(reverse('post', args=[str(pk)]))
+
+
+class AddCommentView(CreateView):
+    model = Comment
+    form_class = CommentForm
+    template_name = "blog/add_comment.html"
+    success_url = reverse_lazy('home')
+
+    def form_valid(self, form):
+        form.instance.post_id = self.kwargs['pk']
+        return super().form_valid(form)

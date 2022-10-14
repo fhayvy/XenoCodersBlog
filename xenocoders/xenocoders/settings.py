@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'blog',
     'ckeditor',
     'ckeditor_uploader',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -152,5 +153,5 @@ CKEDITOR_UPLOAD_PATH = "uploads/"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-
+CRISPY_TEMPLATE_PACK = 'cripsy-bootstrap5'
 

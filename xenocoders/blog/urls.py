@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import contact, about_us, write_for_us, privacy, terms, AllPostsView, CreatePostView, PostDetailView, PostUpdateView, PostDeleteView, AddCategoryView, CategoryView
+from .views import contact, about_us, write_for_us, privacy, terms, AllPostsView, CreatePostView, PostDetailView, PostUpdateView, PostDeleteView, AddCategoryView, CategoryView, LikeView, AddCommentView
 from .forms import ContactForm
 from . import views
 
@@ -17,4 +17,6 @@ urlpatterns = [
     path('write-for-us/', write_for_us, name="write-for-us"),
     path('privacy/', privacy, name="privacy"),
     path('terms/', terms, name="terms"),
+    path('like/<int:pk>', LikeView, name="like_post"),
+    path('post/<int:pk>/comment', AddCommentView.as_view(), name="add_comment")
 ]
