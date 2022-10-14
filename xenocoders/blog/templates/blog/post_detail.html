@@ -77,6 +77,12 @@
             </div>  
             {% endfor %}          
         </div>
+    {% if user %}
+        {% if user.id == post.author.id %}
+            <button class="blog-post-article-btn" onclick="location.href='{% url 'update_post' post.id %}'">Update</button>
+            <button class="blog-post-article-btn" onclick="location.href='{% url 'delete_post' post.id %}'">Delete</button>
+        {% endif %}
+    {% endif %}
     </section>
     <!--  SECOND SECTION ENDS -->
 
@@ -132,6 +138,18 @@
                             </div>
                           </form>
                     </div>
+{% if not post.comments.all %}
+    No Comments Yet...<a href="{% url 'add_comment' post.pk %}">Add One</a>
+{% else %}
+    {% for comment in post.comments.all %}
+        <strong>
+            {{ comment.name }} -
+        </strong>
+        {{ comment.body }}
+        <br><br>
+    {% endfor %}
+    <a href="{% url 'add_comment' post.pk %}">Add One</a>
+{% endif %}
                     <div class="blog-post-comment-users">
                         <div class="blog-post-comment-feed">
                             <div class="blog-post-comment-img">
@@ -196,8 +214,12 @@
                     {% for cat in cat_menu|slice:":1" %}
 
                     <div>
-                        
-                        <img src="{% static 'media/JP_logo.png' %}" alt="An image kuda man"/> 
+                        {% if post.header_image %}
+
+                        <img src="{{cat.header_image.url}}" alt="An image kuda man"/> 
+                        {% else %}
+                        <img src="{% static 'media/JP_logo.png' %}"/> 
+                        {% endif %}
                         
                     </div>
                     <div>
@@ -221,7 +243,12 @@
 
                     <div>
                         
-                        <img src="{% static 'media/JP_logo.png' %}" alt="An image kuda man"/> 
+                        {% if post.header_image %}
+
+                            <img src="{{cat.header_image.url}}"/> 
+                        {% else %}
+                            <img src="{% static 'media/JP_logo.png' %}"/> 
+                        {% endif %}> 
                         
                     </div>
                     <div>
@@ -247,7 +274,12 @@
 
                     <div>
                         
-                        <img src="{% static 'media/JP_logo.png' %}" alt="An image kuda man"/> 
+                        {% if post.header_image %}
+
+                            <img src="{{cat.header_image.url}}"/> 
+                        {% else %}
+                            <img src="{% static 'media/JP_logo.png' %}"/> 
+                        {% endif %}> 
                         
                     </div>
                     <div>
@@ -278,7 +310,12 @@
 
                     <div>
                         
-                        <img src="{% static 'media/JP_logo.png' %}" alt="An image kuda man"/> 
+                        {% if post.header_image %}
+
+                            <img src="{{cat.header_image.url}}"/> 
+                        {% else %}
+                            <img src="{% static 'media/JP_logo.png' %}"/> 
+                        {% endif %}> 
                         
                     </div>
                     <div>
@@ -302,7 +339,12 @@
 
                     <div>
                         
-                        <img src="{% static 'media/JP_logo.png' %}" alt="An image kuda man"/> 
+                        {% if post.header_image %}
+
+                            <img src="{{cat.header_image.url}}"/> 
+                        {% else %}
+                            <img src="{% static 'media/JP_logo.png' %}"/> 
+                        {% endif %}>  
                         
                     </div>
                     <div>
@@ -327,7 +369,12 @@
 
                     <div>
                         
-                        <img src="{% static 'media/JP_logo.png' %}" alt="An image kuda man"/> 
+                        {% if post.header_image %}
+
+                            <img src="{{cat.header_image.url}}"/> 
+                        {% else %}
+                            <img src="{% static 'media/JP_logo.png' %}"/> 
+                        {% endif %}>  
                         
                     </div>
                     <div>
@@ -356,7 +403,12 @@
 
                     <div>
                         
-                        <img src="{% static 'media/JP_logo.png' %}" alt="An image kuda man"/> 
+                        {% if post.header_image %}
+
+                            <img src="{{cat.header_image.url}}"/> 
+                        {% else %}
+                            <img src="{% static 'media/JP_logo.png' %}"/> 
+                        {% endif %}> 
                         
                     </div>
                     <div>
@@ -380,7 +432,12 @@
 
                     <div>
                         
-                        <img src="{% static 'media/JP_logo.png' %}" alt="An image kuda man"/> 
+                        {% if post.header_image %}
+
+                            <img src="{{cat.header_image.url}}"/> 
+                        {% else %}
+                            <img src="{% static 'media/JP_logo.png' %}"/> 
+                        {% endif %}>  
                         
                     </div>
                     <div>
@@ -404,7 +461,12 @@
 
                     <div>
                         
-                        <img src="{% static 'media/JP_logo.png' %}" alt="An image kuda man"/> 
+                        {% if post.header_image %}
+
+                            <img src="{{cat.header_image.url}}"/> 
+                        {% else %}
+                            <img src="{% static 'media/JP_logo.png' %}"/> 
+                        {% endif %}> 
                         
                     </div>
                     <div>

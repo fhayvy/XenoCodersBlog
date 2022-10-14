@@ -27,4 +27,5 @@ urlpatterns = [
     path('set-new-password/<uidb64>/<token>', CompletePasswordReset.as_view(), name='reset-user-password'),
     path('edit_profile/<int:pk>', edit_profile, name="edit_profile"),
     path('<int:pk>/user', ShowProfilePageView.as_view(), name="user_profile"),
+    
 ]
