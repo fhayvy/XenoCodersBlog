@@ -1936,3 +1936,58 @@ color: #fff;
   font-size: 18px;
   font-weight: 600;
 }
+
+/* .................................................Custom 404 ................................................. */
+.custom-main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    margin: 1rem auto 4rem;
+}
+
+.custom-first h2 {
+  font-weight: 700px;
+  font-size: 80px;
+  color: #BA68C8;
+}
+
+.custom-first p {
+  font-weight: 500px;
+  font-size: 24px;
+  margin-top: 50px;
+}
+
+.custom-return, .custom-home {
+  padding: 20px 40px;
+  border-radius: 20px;
+  font-size: 24px;
+}
+
+.custom-return {
+  border: 1px solid #BA68C8;
+  background-color: #FFFFFF;
+}
+
+.custom-home {
+  background-color: #BA68C8;
+  border: none;
+  margin-left: 60px;
+}
+
+.custom-first {
+  /* border: 1px solid pink; */
+  margin-top: 150px;
+}
+
+.custom-buttons {
+  margin: 70px 60px 0px 0px;
+}
+
+.custom-home a {
+  color: #FFFFFF;
+}
+
+.custom-return a {
+  color: #3F3C41;
+}
