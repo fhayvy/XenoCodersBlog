@@ -1925,3 +1925,14 @@ color: #fff;
   }
 
 }
+
+
+/* ................................................ Category Page .................................................. */
+.cat-author-text {
+  margin: 1rem 0;
+}
+
+.cat-author-text p {
+  font-size: 18px;
+  font-weight: 600;
+}
