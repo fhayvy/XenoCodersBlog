@@ -24,8 +24,8 @@ from django.views.decorators.cache import never_cache
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('authentication.urls')),
-    path('blog/', include('blog.urls')),
+    path('auth/', include('authentication.urls')),
+    path('', include('blog.urls')),
     # path('ckeditor/', include('ckeditor_uploader.urls')),
     
     path('ckeditor/upload/', login_required(ckeditor_views.upload), name='ckeditor_upload'),

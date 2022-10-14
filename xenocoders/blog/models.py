@@ -62,3 +62,14 @@ class Post(models.Model):
         ordering = ['-created_on']
 
 
+class Comment(models.Model):
+    post = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE)
+    name = models.CharField(max_length=255)
+    body = models.TextField()
+    date_added = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return f'{self.name}'
+
+    # def get_absolute_url(self):
+    #     return reverse('post',kwargs={'pk':'self.post.id'})
