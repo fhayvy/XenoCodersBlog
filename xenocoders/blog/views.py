@@ -127,6 +127,12 @@ def about_us(request):
 def write_for_us(request):
     return render(request, 'blog/write-for-us.html')
 
+def privacy(request):
+    return render(request, 'blog/privacy.html')
+
+def terms(request):
+    return render(request, 'blog/terms.html')
+
 def LikeView(request, pk):
     post = get_object_or_404(Post, id=request.POST.get('post_id'))
     liked = False

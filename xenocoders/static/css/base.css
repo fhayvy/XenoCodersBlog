@@ -1751,3 +1751,177 @@ color: #fff;
          margin: 1em 0 1em;
      }
  }
+
+
+
+ /*........................................Privacy Policy........................................ */
+
+.privacy-first {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.privacy-know {
+    font-size: 24px;
+}
+
+.privacy {
+    font-size: 60px;
+}
+
+.privacy-first a {
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+.privacy-first button {
+    background-color: #AE1DC7;
+    margin-top: 15px;
+    padding: 0 10px;
+    height: 39px;
+    border: none;
+    border-radius: 3px;
+}
+
+.privacy-website {
+    font-family: 'Roboto', sans-serif;
+    font-size: medium;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+    margin-top: 2rem;
+}
+
+.privacy-plenty {
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    width: 90%;
+    margin: 4rem auto;
+    margin-top: 31px;
+    text-align: justify;
+    line-height: 30px;
+}
+
+.privacy-look {
+    font-family: 'Roboto', sans-serif;
+    font-size: 32px;
+    margin-top: 86px;
+    text-align: center;
+}
+
+@media screen and (max-width: 500px) {
+    .privacy-second {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0 15px;
+    }
+
+    .privacy-website {
+        font-size: 16px;
+        font-weight: 500;
+        width: 300px;
+    }
+
+    .privacy-plenty {
+        height: 70%;
+        width: 65%;
+    }
+
+    .privacy-look {
+        width: 55%;
+    }
+}
+
+/* ....................................Terms of Service ........................................ */
+/* FIRST SECTION */
+.terms-header{
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.terms-understand {
+    font-family: 'Roboto', sans-serif;
+    font-size: 24px;
+}
+.terms{
+        font-size: 60px;
+        margin: 1.3rem 0;
+}
+
+.terms-body {
+    margin-bottom: 4rem;
+}
+
+.terms-updates{
+    background-color: var(--color-primary-text);
+    color: #FFF;
+    padding: 1rem 1rem;
+    border-radius: 5px;
+    margin: 0 auto;
+    width: 200px;
+}
+
+/* SECOND SECTION */
+.terms-obligation {
+    text-align: center;
+    font-size: 24px;
+    width: 90%;
+    font-weight: 700;
+    margin: 0 auto;
+}
+
+.terms-read {
+    font-size: 1.2rem;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 1.5rem;
+}
+
+.terms-check a{
+    color: var(--color-primary-text);
+}
+.terms-check a:hover{
+    color: var(--color-secondary-text);
+}
+
+.terms-subscribe{
+    display: none;
+}
+/* MEDIA SCREEN */
+@media screen and (max-width: 768px) {
+    .terms-subscribe{
+        margin-bottom: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+.terms-subscribe-btn{
+    padding: 0.5rem 1rem;
+    color: #fff;
+    line-height: 25px;
+    font-size: 20px;
+    background: var(--color-primary-text);
+    border-radius: 5px;  
+    border: 1px solid var(--color-primary-text);
+    cursor: pointer;
+    outline: none;
+    margin-top: 2rem;
+  }
+  
+  .terms-subscribe-btn:hover {
+    background: transparent;
+    color: var(--color-primary-text);
+    border: 1px solid var(--color-primary-text);
+  }
+
+  .terms-subscribe a{
+color: #fff;
+  }
+  .terms-subscribe a:hover{
+    color: var(--color-primary-text);
+  }
+
+}
