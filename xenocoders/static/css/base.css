@@ -2383,3 +2383,35 @@ color: #fff;
       font-size: 1rem;
   }
 }
+
+
+/*................................................Profile .................................................. */
+.my-profile {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.my-profile-top,
+.my-profile-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.my-profile-btn {
+  display: inline-block;
+  border: none;
+  background: #000;
+  padding: 0.6em 1em 0.6em 2em;
+  border-radius: 0.25rem;
+  background-image: url(../media/readmore_arrow.png);
+  background-repeat: no-repeat;
+  background-position: left;
+  background-size: 0.6rem;
+  background-position-x: 1rem;
+  color: #FFFFFF;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 1rem;
+}
