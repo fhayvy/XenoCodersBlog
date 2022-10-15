@@ -48,6 +48,14 @@ class Post(models.Model):
     status = models.CharField(max_length=10, choices=options, default='draft')
     category = models.ManyToManyField(Category, related_name="blog_category")
     likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="blog_likes")
+    # fields = (title, created_on, header_image, text, category)
+    # labels = {
+    #         'title': 'Title',
+    #         'created_on': 'Date',
+    #         'header_image': 'Featured Image',
+    #         'text': '',
+    #         'category': 'Categories',
+    #     }
 
     def total_likes(self):
         return self.likes.count()

@@ -2282,3 +2282,104 @@ color: #fff;
   margin: 1rem 0 2rem;
   cursor: pointer;
 }
+
+
+/* ......................................Add Blog Post............................................. */
+.add-new-blog {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.add-new-blog p {
+  margin: 1.5rem 0;
+}
+
+.add-new-blog form {
+  width: 70%;
+}
+
+.add-new-blog input[type=text], .add-new-blog textarea {
+  width: 100%;
+  padding: 1rem 2rem;
+}
+
+/* NEW POST HEADER START */
+.add-new-post{
+  display: flex;
+  gap: 3rem;
+  font-size: 1.5rem;
+  margin: 3rem 0;
+  align-items: center;
+}
+
+.add-new-post-header {
+  color: var(--color-primary-text);
+}
+/* NEW POST HEADER ENDS */
+
+/* ADD BLOG CONTAINER STARTS */
+.add-blog{
+  display: flex;
+  gap: 3rem;
+}
+.add-main-container{
+  flex-basis: 60%;
+  flex-grow: 2;
+}
+
+.add-header{
+  display: flex;
+  justify-content: space-between;
+  padding: 1.2rem 1.2rem 0;
+  align-items: center;
+  color: gray;
+  font-size: 2rem;
+}
+
+.add-text-area textarea {
+  padding: 3%;
+  border: 0px;
+  display: flex;
+}
+
+.add-blog-btn {
+  padding: 0.5rem 1rem;
+  color: #fff;
+  line-height: 25px;
+  font-size: 20px;
+  background: var(--color-primary-text);
+  border-radius: 5px;  
+  border: 1px solid var(--color-primary-text);
+  cursor: pointer;
+  outline: none;
+  margin-top: 2rem;
+}
+
+.add-blog-btn:hover {
+  background: transparent;
+  color: var(--color-primary-text);
+  border: 1px solid var(--color-primary-text);
+}
+
+.add-blog-btn a {
+color: #fff;
+}
+
+.add-blog-btn a:hover{
+  color: var(--color-primary-text);
+}
+
+/* MEDIA SCREEN */
+@media screen and (max-width: 768px) {
+  .add-blog{
+      display: flex;
+      flex-direction: column;
+  }
+  .add-header{
+      justify-content: space-between;
+      font-size: 1rem;
+  }
+  .add-btn2 {
+      font-size: 1rem;
+  }
+}

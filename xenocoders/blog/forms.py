@@ -10,7 +10,6 @@ class  EditProfileForm(forms.ModelForm):
 		model = UserProfile
 		exclude = ["user"]
 
-        
 
 class PostForm(forms.ModelForm):  
 	category = forms.ModelMultipleChoiceField(
