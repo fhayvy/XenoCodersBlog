@@ -1241,7 +1241,7 @@ color: #fff;
 .write-randompic {
   position: absolute;
   left: 53%;
-  bottom: -275%;
+  bottom: 12%;
 }
 
 .write-last-card{
@@ -2008,7 +2008,7 @@ color: #fff;
 }
 
 
-/* ............................................... Reset Password ......................................... */
+/* ............................................... Request Password ......................................... */
 .reset-overall-container {
   height: 100vh;
 }
@@ -2017,6 +2017,7 @@ color: #fff;
   max-width: 1200px;
   width: 90%;
   margin: 0 auto;
+  position: relative;
 }
 
 .reset-flex-container {
@@ -2024,6 +2025,7 @@ color: #fff;
   justify-content: center;
   align-items: center;
   margin-top: 5em;
+  position: relative;
 }
 
 .reset-left-container {
@@ -2059,7 +2061,6 @@ color: #fff;
   color: #000000;
   font-style: cmmi10;
   font-weight: 500;
-  Fill: Solid;
 }
 
 .reset-logo-text {
@@ -2068,12 +2069,10 @@ color: #fff;
   color: #840C98;
   font-weight: 400;
   line-height: 1.5rem;
-  Fill: Solid;
 }
 
 .reset-xeno-image {
   width: 2.5rem;
-  /* margin-bottom: .2em; */
 }
 
 .reset-head-container {
@@ -2086,7 +2085,6 @@ color: #fff;
   color: #4A454B;
   font-weight: 700;
   line-height: 1.5rem;
-  Fill: Solid;
 }
 
 .reset-subhead-content {
@@ -2101,7 +2099,6 @@ color: #fff;
   color: #746565;
   font-weight: 400;
   line-height: 1.5rem;
-  Fill: Solid;
 }
 
 .reset-input-container {
@@ -2126,7 +2123,6 @@ color: #fff;
   font-family: 'Outfit', sans-serif;
   color: #867E7E;
   font-weight: 400;
-  Fill: Solid;
 }
 
 .reset-input-field:focus {
@@ -2141,6 +2137,7 @@ color: #fff;
   color: #FCFCFC;
   font-size: 1.5rem;
   font-weight: 700;
+  cursor: pointer;
 }
 
 .reset-login {
@@ -2148,4 +2145,140 @@ color: #fff;
   justify-content: center;
   gap: 0.5rem;
   margin: 1rem 0;
+}
+
+/* .........................................Reset Password ............................................ */
+.reset2-overall-container {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.reset2-container {
+  max-width: 1200px;
+  width: 85%;
+  margin: 0 auto;
+  position: relative;
+}
+
+.reset2-flex-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 27rem;
+  right: 1rem;
+  width: 100%;
+}
+
+.reset2-left-container {
+  width: 40%;
+}
+
+.reset2-right-container {
+  width: 40%;
+  margin-left: 5em;
+  padding: 3em 0 0em;
+  border-radius: 2rem;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2), 0 8px 8px -8px rgba(255, 225, 225, 0.37), 10px 0 5px -1px #E5E4E2;
+}
+
+.reset2-logo-container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+.reset2-logo-content {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.reset2-logo-first-text {
+  margin-top: 2em;
+  font-size: 2rem;
+  color: #000000;
+  font-weight: 500;
+}
+
+.reset2-logo-text {
+  font-size: 2rem;
+  color: #840C98;
+  font-weight: 400;
+  line-height: 1.5rem;
+}
+
+.reset2-xeno-image {
+  width: 2.5rem;
+  margin-bottom: .2em;
+}
+
+.reset2-head-container {
+  text-align: center;
+  margin: 2em 0em;
+}
+
+.reset2-reset-head {
+  font-size: 2rem;
+  color: #4A454B;
+  font-weight: 700;
+  line-height: 1.5rem;
+  Fill: Solid;
+}
+
+.reset2-subhead-content {
+  text-align: center;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.reset2-subhead-text {
+  font-size: .9rem;
+  font-family: 'Outfit', sans-serif;
+  color: #746565;
+  font-weight: 400;
+  line-height: 1.5rem;
+}
+
+.reset2-input-container {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 1.5em auto;
+}
+
+.reset2-input-field {
+  margin-bottom: 1em;
+  padding: .5em 0 .5em 1.5em;
+  background-image: url(../media/pswd-icon.png);
+  background-repeat: no-repeat;
+  background-size: 1.2rem;
+  background-position-y: center;
+  border: none;
+  border-bottom: 1px solid;
+  border-bottom-width: thin;
+  border-bottom-color: #CD8CD8;
+  font-size: 1.2rem;
+  font-family: 'Montserrat', sans-serif;
+  color: #867E7E;
+  font-weight: 400;
+  background-color: transparent;
+}
+
+.reset2-input-field:focus {
+  outline: none;
+}
+
+.reset2-input-button {
+  padding: .5rem;
+  background-color: #CD8CD8;
+  border: none;
+  border-radius: .625rem;
+  color: #FCFCFC;
+  font-size: 1.5rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  margin: 1rem 0 2rem;
+  cursor: pointer;
 }
