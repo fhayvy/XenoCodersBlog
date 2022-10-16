@@ -584,6 +584,10 @@ font-family: 'Roboto', sans-serif;
 
 /* ...................................Blog Detail View........................................... */
 /* FIRST SECTION */
+ul {
+  padding-left: 1.2rem;
+}
+
 .blog-post-article-hero-image.head img {
   object-fit: cover;
   height: 350px !important;
@@ -673,7 +677,7 @@ font-family: 'Roboto', sans-serif;
   margin: 0 auto;
 }
 .blog-post-writeup{
-  width: 80%;
+  width: 100%;
   font-weight: 400;
 }
 
@@ -700,6 +704,16 @@ font-family: 'Roboto', sans-serif;
   flex: 3;
   flex-grow: 6;
   flex-basis: 40%;
+}
+
+.like-and-edit {
+  width: 90%;
+  margin: 1rem auto;
+}
+
+.like-and-edit .blog-post-article-btn, 
+.like-and-edit .like_post {
+  margin: 1rem 0;
 }
 
 .blog-post-article-btn {
@@ -1069,7 +1083,6 @@ color: #fff;
   color: #000000;
   font-size: 2.5rem;
   font-weight: 400;
-  font-style: regular;
   line-height: 3;
 }
 
@@ -2402,9 +2415,8 @@ color: #fff;
   display: inline-block;
   border: none;
   background: #000;
-  padding: 0.6em 1em 0.6em 2em;
+  padding: 0.6em 1em;
   border-radius: 0.25rem;
-  background-image: url(../media/readmore_arrow.png);
   background-repeat: no-repeat;
   background-position: left;
   background-size: 0.6rem;

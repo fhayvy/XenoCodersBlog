@@ -5,7 +5,7 @@
 <!-- {% for cat in cat_menu %}
 {{cat}}
 {% endfor %} -->
-<main>
+<main class="post-detail-main">
     <!--  FIRST SECTION STARTS -->
     <section class="blog-post-heading_section">
         {% comment %} <img src="{{post.header_image.url}}"<br> {% endcomment %}
@@ -53,54 +53,32 @@
         <div class="blog-post-writeup">
             {{post.text|safe}}
         </div>
-
-        <div class="blog-post-article-sidebar">
-            <div class="blog-post-related_article">
-                <img src="{% static 'media/headline_bar.png' %}" alt="A bar before all the headings" />
-                <h3>Related Articles</h3>
-            </div>
-            
-            {% for post in all_posts_list %}
-            <div class="blog-post-read-more-article">
-                <div>
-                    <img src="{% static 'media/JP_Logo.png' %}" alt="Just project" />
-                </div>
-                <div>
-                    <h3>{{post.title}}</h3>
-                    <p class="read-more-description">
-                        {{post.text | safe |slice:":100"}}
-                    </p>
-                    <div>
-                        <button class="blog-post-article-btn" onclick="location.href='{% url 'post' post.id %}'">Read more</button>
-                    </div>
-                </div>
-            </div>  
-            {% endfor %}          
-        </div>
-    {% if user %}
-        {% if user.id == post.author.id %}
-            <button class="blog-post-article-btn" onclick="location.href='{% url 'update_post' post.id %}'">Update</button>
-            <button class="blog-post-article-btn" onclick="location.href='{% url 'delete_post' post.id %}'">Delete</button>
-        {% endif %}
-    {% endif %}
     </section>
     <!--  SECOND SECTION ENDS -->
 
     <!--  LIKE SECTION BEGINS -->
 
-    <form action="{% url 'like_post' post.pk %}" method="POST">
-        {% csrf_token %}
-    
-        {% if liked %}
-    
-            <button type="submit", name="post_id", value="{{ post.id }}">Unlike</button>
-    
-        {% else %}
-    
-            <button type="submit", name="post_id", value="{{ post.id }}">Like</button> - {{ total_likes }} Likes
-    
+    <div class="like-and-edit">
+        <form action="{% url 'like_post' post.pk %}" method="POST" class="like_post">
+            {% csrf_token %}
+        
+            {% if liked %}
+        
+                <button type="submit", name="post_id", value="{{ post.id }}">Unlike</button>
+        
+            {% else %}
+        
+                <button type="submit", name="post_id", value="{{ post.id }}">Like</button> - {{ total_likes }} Likes
+        
+            {% endif %}
+        </form>
+        {% if user %}
+            {% if user.id == post.author.id %}
+                <button class="blog-post-article-btn" onclick="location.href='{% url 'update_post' post.id %}'">Update</button>
+                <button class="blog-post-article-btn" onclick="location.href='{% url 'delete_post' post.id %}'">Delete</button>
+            {% endif %}
         {% endif %}
-    </form>
+    </div>
 
     <!--  LIKE SECTION ENDS -->
 
@@ -150,49 +128,46 @@
     {% endfor %}
     <a href="{% url 'add_comment' post.pk %}">Add One</a>
 {% endif %}
-                    <div class="blog-post-comment-users">
-                        <div class="blog-post-comment-feed">
-                            <div class="blog-post-comment-img">
-                                <img src="{% static 'media/fintech_profile.png' %}" alt="">
-                            </div>
-                            <div class="blog-post-comment-users-text">
-                                <p class="blog-post-comment-user-name">
-                                    <b>Eze Goodluk</b>
-                                </p>
-                                <p class="blog-post-comment-time">
-                                    16 hours ago
-                                </p>
-                            </div>
+                <div class="blog-post-comment-users">
+                    <div class="blog-post-comment-feed">
+                        <div class="blog-post-comment-img">
+                            <img src="{% static 'media/fintech_profile.png' %}" alt="">
                         </div>
-                        <div class="blog-post-comment-feed-text">
-                            <p>
-                                This article was informative
+                        <div class="blog-post-comment-users-text">
+                            <p class="blog-post-comment-user-name">
+                                <b>Eze Goodluk</b>
+                            </p>
+                            <p class="blog-post-comment-time">
+                                16 hours ago
                             </p>
                         </div>
                     </div>
-                    <div class="blog-post-comment-users">
-                        <div class="blog-post-comment-feed">
-                            <div class="blog-post-comment-img">
-                                <img src="{% static 'media/fintech_profile.png' %}" alt="">
-                            </div>
-                            <div class="blog-post-comment-users-text">
-                                <p class="blog-post-comment-user-name">
-                                    <b>Eze Goodluk</b>
-                                </p>
-                                <p class="blog-post-comment-time">
-                                    16 hours ago
-                                </p>
-                            </div>
+                    <div class="blog-post-comment-feed-text">
+                        <p>
+                            This article was informative
+                        </p>
+                    </div>
+                </div>
+                <div class="blog-post-comment-users">
+                    <div class="blog-post-comment-feed">
+                        <div class="blog-post-comment-img">
+                            <img src="{% static 'media/fintech_profile.png' %}" alt="">
                         </div>
-                        <div>
-                            <p>
-                                This article was informative
+                        <div class="blog-post-comment-users-text">
+                            <p class="blog-post-comment-user-name">
+                                <b>Eze Goodluk</b>
+                            </p>
+                            <p class="blog-post-comment-time">
+                                16 hours ago
                             </p>
                         </div>
                     </div>
-                    <div class="blog-post-load-more">
-                        <a href="" class="blog-post-load-more-btn">Load More <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                    <div>
+                        <p>
+                            This article was informative
+                        </p>
                     </div>
+                </div>
             </div>
         </section>
     </section>
