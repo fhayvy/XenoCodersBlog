@@ -138,6 +138,8 @@
                             </div>
                           </form>
                     </div>
+<br><hr><br>
+Add Comments({{no_of_comments}})<br>
 {% if not post.comments.all %}
     No Comments Yet...<a href="{% url 'add_comment' post.pk %}">Add One</a>
 {% else %}

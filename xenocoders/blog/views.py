@@ -62,6 +62,7 @@ class PostDetailView(DetailView):
 
         context = super(PostDetailView, self).get_context_data(*args, **kwargs)
         context["posts"] = Post.objects.filter(category__name=self.kwargs.get('pk'))
+        context["no_of_comments"] = Comment.objects.filter(post__title=self.kwargs.get('pk')).count()
 
         stuff = get_object_or_404(Post, id=self.kwargs['pk'])
 
@@ -152,12 +153,36 @@ def LikeView(request, pk):
     return HttpResponseRedirect(reverse('post', args=[str(pk)]))
 
 
-class AddCommentView(CreateView):
-    model = Comment
-    form_class = CommentForm
-    template_name = "blog/add_comment.html"
-    success_url = reverse_lazy('home')
+# class AddCommentView(CreateView):
+#     model = Comment
+#     form_class = CommentForm
+#     template_name = "blog/add_comment.html"
+#     success_url = reverse_lazy('home')
 
-    def form_valid(self, form):
-        form.instance.post_id = self.kwargs['pk']
-        return super().form_valid(form)
+#     def form_valid(self, form):
+#         form.instance.post_id = self.kwargs['pk']
+#         return super().form_valid(form)
+
+
+def AddCommentView(request, pk):
+    post = Post.objects.get(id=pk)
+    form = CommentForm(instance=post)
+
+    if request.method == "POST":
+        form = CommentForm(request.POST, instance=post)
+        if form.is_valid():
+            name = form.cleaned_data("body")
+            body = form.cleaned_data("body")
+            comment = Comment(name=name, body=body, post=post)
+            comment.save()
+            return redirect('home')
+
+    else:
+        form = CommentForm()
+
+
+    context = {
+        "form": form,
+    }
+
+    return render(request, 'blog/add_comment.html', context)
