@@ -10,7 +10,7 @@ from .forms import PostForm, UserProfile
 from django.shortcuts import redirect
 from .forms import ContactForm, PostForm, CommentForm
 from django.contrib import messages
-
+from django.views.generic.edit import FormMixin
 
 # Create your views here.
 
@@ -51,19 +51,25 @@ class AddCategoryView(CreateView):
     success_url = reverse_lazy('home')
 
  
-class PostDetailView(DetailView):
+class PostDetailView(FormMixin, DetailView):
     model = Post
     template_name = "blog/post_detail.html"
+    form_class = CommentForm
+
+    def get_success_url(self):
+        return reverse('post_detail', kwargs={'pk': self.object.id})
+
+    def form_valid(self, form):
+        return super().form_valid(form)
 
     def get_context_data(self, *args, **kwargs):
-        form = PostForm()
+        # form = PostForm()
+        form = CommentForm()
         
         cat_menu = Post.objects.all()
 
         context = super(PostDetailView, self).get_context_data(*args, **kwargs)
-        context["posts"] = Post.objects.filter(category__name=self.kwargs.get('pk'))
-        context["no_of_comments"] = Comment.objects.filter(post__title=self.kwargs.get('pk')).count()
-
+    
         stuff = get_object_or_404(Post, id=self.kwargs['pk'])
 
         total_likes = stuff.total_likes()
@@ -73,6 +79,9 @@ class PostDetailView(DetailView):
         if stuff.likes.filter(id=self.request.user.id).exists():
             liked = True
 
+        context["posts"] = Post.objects.filter(category__name=self.kwargs.get('pk'))
+        context["no_of_comments"] = Comment.objects.filter(post__title=self.kwargs.get('pk')).count()
+        context["post_comments"] = Comment.objects.filter(post=self.object.id)
         context["total_likes"] = total_likes
         context["likes"] = liked
         context["cates"] = cates
@@ -80,6 +89,8 @@ class PostDetailView(DetailView):
         context["cat_menu"] = cat_menu
 
         return context
+
+
         
 
 class PostUpdateView(UpdateView):
@@ -182,7 +193,7 @@ def AddCommentView(request, pk):
 
 
     context = {
-        "form": form,
+        "comment_form": form,
     }
 
     return render(request, 'blog/add_comment.html', context)

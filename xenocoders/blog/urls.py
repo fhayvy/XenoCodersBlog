@@ -18,5 +18,5 @@ urlpatterns = [
     path('privacy/', privacy, name="privacy"),
     path('terms/', terms, name="terms"),
     path('like/<int:pk>', LikeView, name="like_post"),
-    path('post/<int:pk>/comment', AddCommentView, name="add_comment")
+    path('post/<int:pk>/comment', AddCommentView, name="add_comment"),
 ]
