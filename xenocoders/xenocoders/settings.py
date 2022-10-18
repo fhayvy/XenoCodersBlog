@@ -10,15 +10,16 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "xenocoders.settings")
 
 import dj_database_url
-DATABASES = {'default': dj_database_url.config(default='postgres://jrnkvnzw:gZUTgOh7W-f6aDQDG4CS03E0T8XW0gh-@babar.db.elephantsql.com/jrnkvnzw')}
+DATABASES = {'default': dj_database_url.config(default='postgres://sddbjfyu:tfsuM_84OWPmIIht92eDHj1Zn8HLJE17@peanut.db.elephantsql.com/sddbjfyu')}
 
 from pathlib import Path
 from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(_file_).resolve().parent.parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -28,9 +29,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ["xenocodersblog.herokuapp.com", "127.0.0.1"]
+# ALLOWED_HOSTS = ["https://test-deploy-x.herokuapp.com", "127.0.0.1"]
+#ALLOWED_HOSTS = ['localhost', '127.0.0.1','https://test-deploy-x.herokuapp.com', config('SERVER', default='127.0.0.1')]
+# ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['test-deploy-x.herokuapp.com', "127.0.0.1"]
 
 AUTH_USER_MODEL = 'authentication.User'
 
@@ -53,10 +57,10 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-
     "django.middleware.security.SecurityMiddleware",
 
     "whitenoise.middleware.WhiteNoiseMiddleware",
+
 
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -149,7 +153,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
-    # ("editor","/ckeditor")
 ]
 
 MEDIA_URL = '/media/'
@@ -157,7 +160,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
 
-CKEDITOR_BASEPATH = "/static/editor/ckeditor/ckeditor/"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -166,7 +169,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 CRISPY_TEMPLATE_PACK = 'cripsy-bootstrap5'
-
-# SETTING UP WHITE NOISE
-
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
