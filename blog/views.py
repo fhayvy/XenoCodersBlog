@@ -14,6 +14,7 @@ from django.views.generic.edit import FormMixin
 
 # Create your views here.
 
+
 class AllPostsView(ListView):
     model = Post
     template_name = "blog/home.html"
@@ -22,6 +23,7 @@ class AllPostsView(ListView):
     def get_context_data(self, *args, **kwargs):
 
         context = super(AllPostsView, self).get_context_data(*args, **kwargs)
+        print(context)
         return context
 
 
@@ -50,7 +52,7 @@ class AddCategoryView(CreateView):
     fields = "__all__"
     success_url = reverse_lazy('home')
 
- 
+
 class PostDetailView(FormMixin, DetailView):
     model = Post
     template_name = "blog/post_detail.html"
@@ -65,11 +67,11 @@ class PostDetailView(FormMixin, DetailView):
     def get_context_data(self, *args, **kwargs):
         # form = PostForm()
         form = CommentForm()
-        
+
         cat_menu = Post.objects.all()
 
         context = super(PostDetailView, self).get_context_data(*args, **kwargs)
-    
+
         stuff = get_object_or_404(Post, id=self.kwargs['pk'])
 
         total_likes = stuff.total_likes()
@@ -79,8 +81,10 @@ class PostDetailView(FormMixin, DetailView):
         if stuff.likes.filter(id=self.request.user.id).exists():
             liked = True
 
-        context["posts"] = Post.objects.filter(category__name=self.kwargs.get('pk'))
-        context["no_of_comments"] = Comment.objects.filter(post__title=self.kwargs.get('pk')).count()
+        context["posts"] = Post.objects.filter(
+            category__name=self.kwargs.get('pk'))
+        context["no_of_comments"] = Comment.objects.filter(
+            post__title=self.kwargs.get('pk')).count()
         context["post_comments"] = Comment.objects.filter(post=self.object.id)
         context["total_likes"] = total_likes
         context["likes"] = liked
@@ -90,8 +94,6 @@ class PostDetailView(FormMixin, DetailView):
 
         return context
 
-
-        
 
 class PostUpdateView(UpdateView):
     model = Post
@@ -110,7 +112,7 @@ def CategoryView(request, cates):
     context = {
         "category": cates,
         "category_posts": category_posts,
-        }
+    }
 
     return render(request, "blog/category.html", context)
 
@@ -119,37 +121,41 @@ def contact(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
-            subject = "New Message on Xenocoders" 
+            subject = "New Message on Xenocoders"
             body = {
-            'first_name': form.cleaned_data['first_name'], 
-            'email': form.cleaned_data['email_address'], 
-            'message':form.cleaned_data['message'], 
+                'first_name': form.cleaned_data['first_name'],
+                'email': form.cleaned_data['email_address'],
+                'message': form.cleaned_data['message'],
             }
             message = "\n".join(body.values())
-            
+
             try:
-                send_mail(subject, message, 'hi@imrvon.com', ['hi@imrvon.com']) 
+                send_mail(subject, message, 'hi@imrvon.com', ['hi@imrvon.com'])
             except BadHeaderError:
                 return HttpResponse('Invalid header found.')
-            messages.success(request, "Message sent." )
-            return redirect ("contact")
+            messages.success(request, "Message sent.")
+            return redirect("contact")
         messages.error(request, "Error. Message not sent.")
 
     form = ContactForm()
-    return render(request, "blog/contact_us.html", {'form':form})
+    return render(request, "blog/contact_us.html", {'form': form})
 
 
 def about_us(request):
     return render(request, 'blog/about_us.html')
 
+
 def write_for_us(request):
     return render(request, 'blog/write-for-us.html')
+
 
 def privacy(request):
     return render(request, 'blog/privacy.html')
 
+
 def terms(request):
     return render(request, 'blog/terms.html')
+
 
 def LikeView(request, pk):
     post = get_object_or_404(Post, id=request.POST.get('post_id'))
@@ -158,8 +164,8 @@ def LikeView(request, pk):
         post.likes.remove(request.user)
         liked = False
     else:
-        post.likes.add(request.user) 
-        liked = True       
+        post.likes.add(request.user)
+        liked = True
 
     return HttpResponseRedirect(reverse('post', args=[str(pk)]))
 
@@ -190,7 +196,6 @@ def AddCommentView(request, pk):
 
     else:
         form = CommentForm()
-
 
     context = {
         "comment_form": form,
