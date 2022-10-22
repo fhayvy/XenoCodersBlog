@@ -14,7 +14,8 @@ from pathlib import Path
 from decouple import config
 
 import dj_database_url
-DATABASES = {'default': dj_database_url.config(default=config('DATABASE_STRING'))}
+DATABASES = {'default': dj_database_url.config(
+    default=config('DATABASE_STRING'))}
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,16 +27,19 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config('SECRET_KEY')
 
+
 def ShowDebug() -> bool:
     envVal = config("DEBUG").lower()
     if envVal == "false":
         return True
     return True
 
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = ShowDebug()
 
-ALLOWED_HOSTS = ["xenocodersblog.herokuapp.com", "127.0.0.1"]
+ALLOWED_HOSTS = ["xenocodersblog.herokuapp.com",
+                 "xenocodersblogg.herokuapp.com", "127.0.0.1"]
 
 AUTH_USER_MODEL = 'authentication.User'
 
