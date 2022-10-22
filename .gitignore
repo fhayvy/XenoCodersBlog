@@ -131,3 +131,7 @@ dmypy.json
 # Mine
 .env
 venv/*
+
+.vscode/
+.idea/
+staticfiles/
