@@ -192,7 +192,7 @@ span {
   background: var(--color-primary-text);
   padding: 0.6em 1em 0.6em 2em;
   border-radius: 0.25rem;
-  background-image: url(./media/readmore_arrow.png);
+  background-image: url(../media/readmore_arrow.png);
   background-repeat: no-repeat;
   background-position: left;
   background-size: 0.6rem;
@@ -232,7 +232,7 @@ span {
   /* padding: .5em 2em .5em 3em; */
   width: 8rem;
   background: transparent;
-  background-image: url(./media/search_icon.png);
+  background-image: url(../media/search_icon.png);
   background-repeat: no-repeat;
   background-position: left;
   background-size: 1.2rem;
@@ -1180,7 +1180,7 @@ textarea {
 }
 
 .write-card-image {
-  background-image: url("./media/write-box-img.png");
+  background-image: url("../media/write-box-img.png");
   background-size: 70%;
   background-repeat: no-repeat;
   padding: 2rem;
@@ -1431,7 +1431,7 @@ textarea {
   border-bottom-width: thin;
   padding-left: 2em;
   padding-bottom: 0.5em;
-  background: url("./media/input-icon.png");
+  background: url("../media/input-icon.png");
   background-repeat: no-repeat;
   font-family: "Montserrat", sans-serif;
   color: #a49595;
@@ -1440,7 +1440,7 @@ textarea {
 }
 
 .signup-form-content .signup-pswd-field {
-  background: url("./media/pswd-icon.png");
+  background: url("../media/pswd-icon.png");
   background-repeat: no-repeat;
 }
 
@@ -1457,7 +1457,7 @@ textarea {
 }
 
 .signup-form-content .signup-email-field {
-  background: url("./media/email-sign.svg");
+  background: url("../media/email-sign.svg");
   background-repeat: no-repeat;
 }
 
@@ -2093,7 +2093,7 @@ textarea {
 .reset-input-field {
   margin-bottom: 4em;
   padding: 0.5em 0 0.5em 1.5em;
-  background-image: url(./media/at-icon.png);
+  background-image: url(../media/at-icon.png);
   background-repeat: no-repeat;
   background-size: 1.2rem;
   background-position-y: center;
@@ -2234,7 +2234,7 @@ textarea {
 .reset2-input-field {
   margin-bottom: 1em;
   padding: 0.5em 0 0.5em 1.5em;
-  background-image: url(./media/pswd-icon.png);
+  background-image: url(../media/pswd-icon.png);
   background-repeat: no-repeat;
   background-size: 1.2rem;
   background-position-y: center;
@@ -2386,7 +2386,7 @@ textarea {
   background: #000;
   padding: 0.6em 1em 0.6em 2em;
   border-radius: 0.25rem;
-  background-image: url(./media/readmore_arrow.png);
+  background-image: url(../media/readmore_arrow.png);
   background-repeat: no-repeat;
   background-position: left;
   background-size: 0.6rem;
