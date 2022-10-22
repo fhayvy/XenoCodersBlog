@@ -28,15 +28,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 
 
-def ShowDebug() -> bool:
+def showDebug() -> bool:
     envVal = config("DEBUG").lower()
     if envVal == "false":
-        return True
+        return False
     return True
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = ShowDebug()
+DEBUG = showDebug()
 
 ALLOWED_HOSTS = ["xenocodersblog.herokuapp.com",
                  "xenocodersblogg.herokuapp.com", "127.0.0.1"]
