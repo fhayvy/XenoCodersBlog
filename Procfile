@@ -1,1 +1,1 @@
-web: gunicorn --pythonpath xenocoders.wsgi
+web: gunicorn xenocoders.wsgi
