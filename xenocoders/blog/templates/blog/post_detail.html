@@ -138,8 +138,10 @@
                             </div>
                           </form>
                     </div>
+<br><hr><br>
+{% comment %} Add Comments({{no_of_comments}})<br> {% endcomment %}
 {% if not post.comments.all %}
-    No Comments Yet...<a href="{% url 'add_comment' post.pk %}">Add One</a>
+    {% comment %} No Comments Yet...<a href="{% url 'add_comment' post.pk %}">Add One</a> {% endcomment %}
 {% else %}
     {% for comment in post.comments.all %}
         <strong>
@@ -148,8 +150,14 @@
         {{ comment.body }}
         <br><br>
     {% endfor %}
-    <a href="{% url 'add_comment' post.pk %}">Add One</a>
+    {% comment %} <a href="{% url 'add_comment' post.pk %}">Add One</a> {% endcomment %}
 {% endif %}
+
+<form method="POST" action="/post/{{post.id}}/comment">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Submit">
+</form>
                     <div class="blog-post-comment-users">
                         <div class="blog-post-comment-feed">
                             <div class="blog-post-comment-img">
