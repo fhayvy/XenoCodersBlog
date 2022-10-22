@@ -182,8 +182,8 @@ def AddCommentView(request, pk):
     if request.method == "POST":
         form = CommentForm(request.POST, instance=post)
         if form.is_valid():
-            name = form.cleaned_data("body")
-            body = form.cleaned_data("body")
+            name = form.cleaned_data["name"]
+            body = form.cleaned_data["body"]
             comment = Comment(name=name, body=body, post=post)
             comment.save()
             return redirect('home')

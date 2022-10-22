@@ -130,7 +130,7 @@ p, button {
     background: #CD8CD8;
     padding: .6em 1em .6em 2em;
     border-radius: .25rem;
-    background-image: url(./assets/readmore_arrow.png);
+    background-image: url("../media/readmore_arrow.png");
     background-repeat: no-repeat;
     background-position: left;
     background-size: .6rem;
