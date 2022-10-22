@@ -20,11 +20,11 @@ class AllPostsView(ListView):
     template_name = "blog/home.html"
     context_object_name = "all_posts_list"
 
-    def get_context_data(self, *args, **kwargs):
+    # def get_context_data(self, *args, **kwargs):
 
-        context = super(AllPostsView, self).get_context_data(*args, **kwargs)
-        print(context)
-        return context
+    #     context = super(AllPostsView, self).get_context_data(*args, **kwargs)
+    #     print(context)
+    #     return context
 
 
 class CreatePostView(CreateView):
