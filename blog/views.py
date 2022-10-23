@@ -16,18 +16,9 @@ from django.views.generic.edit import FormMixin
 
 
 class AllPostsView(ListView):
-    # model = Post
+    model = Post
     template_name = "blog/home.html"
-    # context_object_name = "all_posts_list"
-
-    context_object_name = 'all_posts_list'
-    queryset = Post.objects.all()
-
-    # def get_context_data(self, *args, **kwargs):
-
-    #     context = super(AllPostsView, self).get_context_data(*args, **kwargs)
-    #     print(context)
-    #     return context
+    context_object_name = "all_posts_list"
 
 
 class CreatePostView(CreateView):
