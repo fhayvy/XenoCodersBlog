@@ -1,5 +1,4 @@
 {% load static %}
-{% comment %} {% load cripsy_forms_tags %} {% endcomment %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,10 +11,17 @@
 </head>
 <body>
     <h1>Edit Profile</h1>
-{% comment %} {% cripsy form %} {% endcomment %}
-{{form}}
-    {% comment %} {{user.userprofile.bio}}
-    <img src="{{user.userprofile.profile_pic.url}}"> {% endcomment %}
-    
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form.as_p}}
+    {% comment %} {{form.media}} {% endcomment %}
+    <input type="submit" value="Submit">
+</form>
+
+<button onclick="location.href='{% url 'user_profile' user.id %}'">See Your Posts</button>
+{{user.userprofile.bio}}
+<img src="{{user.userprofile.profile_pic.url}}">
+
 </body>
 </html>

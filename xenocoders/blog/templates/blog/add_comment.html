@@ -1,8 +1,6 @@
-commmmm
-
 <form method="POST">
     {% csrf_token %}
-    {{form.as_p}}
+    {{comment_form.as_p}}
     <input type="submit" value="Submit">
 </form>
 <div id="disqus_thread"></div>
